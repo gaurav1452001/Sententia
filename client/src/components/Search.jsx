@@ -1,6 +1,6 @@
 import React, { useContext,useRef } from 'react'
 import search from '../assets/search.png';
-import hero from '../assets/hero_logo-nobg.png';
+import hero from '../assets/hero_nobg2.png';
 import { AppContext } from '../context/AppContext';
 const Search = () => {
 
@@ -19,12 +19,14 @@ const Search = () => {
         <p className='text-5xl md'>SENTENTIA</p>
         <p className='text-2xl'>Draft the Writer Inside You</p>
         <form className='bg-white flex justify-between p-1 rounded-full w-[75vw]'>
-          <input ref={inputRef} type="text" placeholder='Search Sententia for Authors, Blogs...' className='w-[75vw] bg-transparent outline-none p-2' />
+          <input ref={inputRef} type="text" placeholder='Search Sententia for Authors, Blogs...' className='placeholder: text-center w-[80vw] bg-transparent outline-none p-1' />
           <img onClick={onSearch} className='w-9 h-9 cursor-pointer' src={search} alt="" />
         </form>
         <div>
-          <img src={hero} alt="" />
+          <img className='w-96' src={hero} alt="" />
         </div>
+        <div className='w-[80vw] border-2 mx-auto'>
+      </div>
       </div>
     </div>
   )

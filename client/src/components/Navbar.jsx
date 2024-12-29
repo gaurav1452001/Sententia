@@ -8,7 +8,7 @@ const Navbar = () => {
     const { user } = useUser()
 
     return (
-        <div className='shadow px-7 bg-[#f7ecd5] h-12'>
+        <div className='shadow px-7 bg-[#ffe16e] h-12'>
             <div className='flex justify-between items-center'>
                 <div className='w-32'>
                     <img src={logo} alt="logo" />

@@ -11,6 +11,7 @@ const ListBlogs = () => {
           Search Results for "{searchFilter}"
           </div>
         }
+        
       </div>
     </>
   )
