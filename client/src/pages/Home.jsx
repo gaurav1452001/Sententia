@@ -7,7 +7,7 @@ const Home = () => {
     <div className='bg-[#daaad2] min-h-screen'>
       <Navbar/>
       <Search/>
-      <div className='w-[90vw] border-2 mx-auto'>
+      <div className='w-[80vw] border-2 mx-auto'>
       </div>
       <ListBlogs/>
     </div>

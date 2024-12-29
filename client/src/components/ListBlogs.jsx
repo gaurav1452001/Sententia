@@ -6,8 +6,11 @@ const ListBlogs = () => {
 
   return (
     <>
-      <div className='mx-auto w-[90vh]'>
-        test
+      <div className='flex flex-col items-center w-[75vh]'>
+        {isSearched&&<div className='text-xl my-3'>
+          Search Results for "{searchFilter}"
+          </div>
+        }
       </div>
     </>
   )
