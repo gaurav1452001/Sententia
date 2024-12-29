@@ -1,5 +1,6 @@
 import React,{useContext} from 'react'
 import { AppContext } from '../context/AppContext';
+import BlogCard from './BlogCard';
 const ListBlogs = () => {
 
   const {isSearched,searchFilter,setSearchFilter}=useContext(AppContext)
@@ -11,8 +12,8 @@ const ListBlogs = () => {
           Search Results for "{searchFilter}"
           </div>
         }
-        
       </div>
+        <BlogCard/>
     </>
   )
 }
