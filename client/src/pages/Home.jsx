@@ -1,11 +1,15 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import Search from '../components/Search'
+import ListBlogs from '../components/ListBlogs'
 const Home = () => {
   return (
-    <div className='bg-[#e5bbdf] min-h-screen'>
+    <div className='bg-[#daaad2] min-h-screen'>
       <Navbar/>
       <Search/>
+      <div className='w-[90vw] border-2 mx-auto'>
+      </div>
+      <ListBlogs/>
     </div>
   )
 }

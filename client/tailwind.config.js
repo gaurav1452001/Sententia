@@ -6,9 +6,7 @@ export default {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'searcher': "url(/client/src/assets/search.png)",
-      }
+
     },
   },
   plugins: [],
