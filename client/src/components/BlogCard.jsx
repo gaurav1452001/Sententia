@@ -35,9 +35,9 @@ const BlogCard = ({ Post }) => {
     //   </div>
     // </div>
     <>
-    <div className='w-1/2 border-2 mx-auto'>
+    <div className='w-1/2 border-2 mx-auto '>
     </div>
-      <div className='hover:bg-[#9cb5f5] m-3 p-4 flex-col mx-auto w-1/2'>
+      <div className='hover:bg-[#9cb5f5] m-3 p-4 flex-col mx-auto sm:w-2/3 md:w-1/2'>
       
         <div className='flex flex-row mx-2'>
           <img src="https://dub.sh/Y0NxRWv" alt="" className='h-7 w-7 rounded-full object-cover object-center' />

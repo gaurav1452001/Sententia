@@ -7,7 +7,7 @@ const ListBlogs = () => {
 
   return (
     <>
-      <div className='flex flex-col items-center w-[75vh]'>
+      <div className='flex flex-col items-center'>
         {isSearched&&<div className='text-xl my-3'>
           Search Results for "{searchFilter}"
           </div>

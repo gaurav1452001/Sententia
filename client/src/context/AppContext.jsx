@@ -6,9 +6,12 @@ export const AppContextProvider=(props)=>{
 
     const [searchFilter,setSearchFilter]=useState('')
     const [isSearched,setIsSearched]=useState(false)
+    const [blogs,setBlogs]=useState([])
 
     const value={
-        setIsSearched,isSearched,setSearchFilter,searchFilter,
+        setIsSearched,isSearched,
+        setSearchFilter,searchFilter,
+        blogs,setBlogs
     }
     return (<AppContext.Provider value={value}>
         {props.children}
