@@ -4,7 +4,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "server":"nodemon server.js",
+    "server": "nodemon server.js",
     "start": "node server.js"
   },
   "keywords": [],
@@ -12,6 +12,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@sentry/node": "^8.48.0",
+    "@sentry/profiling-node": "^8.48.0",
     "bcrypt": "^5.1.1",
     "cloudinary": "^2.5.1",
     "cors": "^2.8.5",
