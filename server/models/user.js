@@ -15,8 +15,7 @@ const userSchema=new mongoose.Schema({
         unique:true
     },
     blogName:{
-        type:String,
-        required:true
+        type:String
     },
     image:{
         type:String,
