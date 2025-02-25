@@ -1,27 +1,32 @@
-import React,{useContext,useState} from 'react'
+import React, { useContext, useState } from 'react'
 import { AppContext } from '../context/AppContext';
 import left from '../assets/left-page.png';
 import right from '../assets/right-page.png';
 import BlogCard from './BlogCard';
-const ListBlogs = () => {
+import  {blogData}  from '../assets/assets'
 
-  const {isSearched,searchFilter,setSearchFilter}=useContext(AppContext)
-  const [currentPage,setCurrentPage]=useState(1);
+const ListBlogs = () => {
+  console.log("Blog Data:", blogData);
+  const { isSearched, searchFilter, setSearchFilter } = useContext(AppContext)
+  const [currentPage, setCurrentPage] = useState(1);
   return (
     <>
       <div className='flex flex-col items-center'>
-        {isSearched&&<div className='text-xl my-3'>
+        {isSearched && <div className='text-xl my-3'>
           Search Results for "{searchFilter}"
-          </div>
+        </div>
         }
       </div>
       <div>
-
+        {blogData.map((blog) => (
+          <BlogCard key={blog.id} blog={blog} />
+        ))
+        }
       </div>
-        <BlogCard/>
+      {/* <BlogCard/> */}
 
-        {/* {blogs.length>0&&( */}
-        <div className='flex flex-row justify-center my-5'>
+      {/* {blogs.length>0&&( */}
+      {/* <div className='flex flex-row justify-center my-5'>
             <a href="">
               <img className='w-5' src={left} alt="" />
             </a>
@@ -35,8 +40,8 @@ const ListBlogs = () => {
             <a href="">
               <img className='w-5' src={right} alt="" />
             </a>
-          </div>
-        {/* )} */}
+          </div> */}
+      {/* )} */}
     </>
   )
 }
