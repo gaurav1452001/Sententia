@@ -3,11 +3,9 @@ import { AppContext } from '../context/AppContext';
 import left from '../assets/left-page.png';
 import right from '../assets/right-page.png';
 import BlogCard from './BlogCard';
-import  {blogData}  from '../assets/assets'
 
 const ListBlogs = () => {
-  console.log("Blog Data:", blogData);
-  const { isSearched, searchFilter, setSearchFilter } = useContext(AppContext)
+  const { isSearched, searchFilter, setSearchFilter,blogs } = useContext(AppContext)
   const [currentPage, setCurrentPage] = useState(1);
   return (
     <>
@@ -18,7 +16,7 @@ const ListBlogs = () => {
         }
       </div>
       <div>
-        {blogData.map((blog) => (
+        {blogs.map((blog) => (
           <BlogCard key={blog.id} blog={blog} />
         ))
         }

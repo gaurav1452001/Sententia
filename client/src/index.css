@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+html {
+    background-color:black;
+    color:white;
+    caret-color:white;
+    
+}
+button:hover .ql-stroke,
+.ql-picker-label:hover .ql-stroke {
+  fill: none;
+  stroke: white !important;
+}
+
+.ql-active .ql-stroke {
+  fill: none;
+  stroke: white !important;
+}
+
+button:hover .ql-fill,
+.ql-picker-label:hover .ql-fill {
+  fill: white !important;
+  stroke: none;
+}
+
+.ql-active .ql-fill {
+  fill: white !important;
+  stroke: none;
+}
+.ql-container {
+    height: calc(100% - 42px); 
+  }

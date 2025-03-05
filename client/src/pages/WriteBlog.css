@@ -1,0 +1,13 @@
+/* WriteBlog.css */
+.quill-editor {
+    height: 100%;
+  }
+  
+  .quill-editor .ql-container {
+    height: calc(100% - 42px); /* 42px is the height of the toolbar */
+  }
+  
+  .quill-editor .ql-editor {
+    min-height: 900px;
+    max-height: none;
+  }
