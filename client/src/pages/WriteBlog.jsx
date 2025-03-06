@@ -55,7 +55,7 @@ const WriteBlog = () => {
       
       <div className="w-[98%] sm:w-2/3  sm:mt-24  mx-auto my-5 px-5">
       <div className="flex justify-end">
-          <button type="submit" form="my-form" className=" bg-white text-black p-2 my-2 w-40 border rounded-xl font-semibold">Create Post</button>
+          <button type="submit" form="my-form" className=" bg-white text-black p-2 mt-16 sm:my-2 w-40 border rounded-xl font-semibold">Create Post</button>
         </div>
         <div className="p-2 flex justify-end">
           {date.format("dddd DD MMMM")}
