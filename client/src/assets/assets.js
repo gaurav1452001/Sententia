@@ -5,7 +5,7 @@ export const blogData = [
         postTitle: "Why do prices keep rising",
         description: "India has seen a massive rise in petrol prices.",
         author: "Gaurav Kumar",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     },
     {
         id: 2,
@@ -13,7 +13,7 @@ export const blogData = [
         postTitle: "The Future of AI",
         description: "Artificial Intelligence is shaping the world in new ways.",
         author: "Neha Sharma",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     },
     {
         id: 3,
@@ -21,7 +21,7 @@ export const blogData = [
         postTitle: "10 Tips for a Healthier Life",
         description: "Simple changes that can improve your overall well-being.",
         author: "Rohan Mehta",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     },
     {
         id: 4,
@@ -29,7 +29,7 @@ export const blogData = [
         postTitle: "Exploring the Mountains of Himachal",
         description: "A journey through the serene landscapes of Himachal Pradesh.",
         author: "Aisha Khan",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     },
     {
         id: 5,
@@ -37,7 +37,7 @@ export const blogData = [
         postTitle: "Understanding Stock Market Trends",
         description: "How to analyze and invest wisely in the stock market.",
         author: "Amit Verma",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     },
     {
         id: 6,
@@ -45,7 +45,7 @@ export const blogData = [
         postTitle: "How I Built My First Company",
         description: "Lessons learned from my entrepreneurial journey.",
         author: "Priya Saxena",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     },
     {
         id: 7,
@@ -53,7 +53,7 @@ export const blogData = [
         postTitle: "The Shift to Online Learning",
         description: "How technology is revolutionizing education.",
         author: "Rahul Tiwari",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     },
     {
         id: 8,
@@ -61,7 +61,7 @@ export const blogData = [
         postTitle: "Best Street Foods in Delhi",
         description: "A guide to the must-try street foods of Delhi.",
         author: "Sakshi Gupta",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     },
     {
         id: 9,
@@ -69,7 +69,7 @@ export const blogData = [
         postTitle: "Top 5 Smartphones of 2024",
         description: "A comparison of the best smartphones this year.",
         author: "Vikram Choudhary",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     },
     {
         id: 10,
@@ -77,7 +77,7 @@ export const blogData = [
         postTitle: "Electric Cars - The Future?",
         description: "Are electric cars the solution to pollution and fuel dependency?",
         author: "Rajesh Patel",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     },
     {
         id: 11,
@@ -85,7 +85,7 @@ export const blogData = [
         postTitle: "Top 10 Songs of the Year",
         description: "A curated list of the most popular songs this year.",
         author: "Arjun Kapoor",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     },
     {
         id: 12,
@@ -93,7 +93,7 @@ export const blogData = [
         postTitle: "How to Stay Fit Without a Gym",
         description: "Home workouts that keep you in shape.",
         author: "Kriti Sen",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     },
     {
         id: 13,
@@ -101,7 +101,7 @@ export const blogData = [
         postTitle: "SEO Tips for 2024",
         description: "Improve your website's ranking with these SEO strategies.",
         author: "Sandeep Mishra",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     },
     {
         id: 14,
@@ -109,7 +109,7 @@ export const blogData = [
         postTitle: "Mars Colonization - A Reality Soon?",
         description: "Scientists are making huge strides in space travel.",
         author: "Pooja Das",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     },
     {
         id: 15,
@@ -117,7 +117,7 @@ export const blogData = [
         postTitle: "Top 5 Video Games to Play Right Now",
         description: "The best video games that you should try this season.",
         author: "Manish Yadav",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     },
     {
         id: 16,
@@ -125,7 +125,7 @@ export const blogData = [
         postTitle: "Latest Fashion Trends for 2024",
         description: "What’s trending in the world of fashion this year.",
         author: "Simran Arora",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     },
     {
         id: 17,
@@ -133,7 +133,7 @@ export const blogData = [
         postTitle: "The Upcoming Elections: What to Expect",
         description: "A look at the political scenario and expectations.",
         author: "Ankit Sharma",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     },
     {
         id: 18,
@@ -141,7 +141,7 @@ export const blogData = [
         postTitle: "Best Movies of the Decade",
         description: "A roundup of the greatest films in the last ten years.",
         author: "Karan Singh",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     },
     {
         id: 19,
@@ -149,7 +149,7 @@ export const blogData = [
         postTitle: "How to Take Care of Your Dog",
         description: "Essential tips for keeping your furry friend happy and healthy.",
         author: "Riya Malhotra",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     },
     {
         id: 20,
@@ -157,7 +157,7 @@ export const blogData = [
         postTitle: "How to Stay Motivated as an Entrepreneur",
         description: "Key habits that successful entrepreneurs follow.",
         author: "Deepak Choudhary",
-        image: "https://placehold.co/600x400/000000/FFF"
+        image: "https://placehold.co/600x400/white/black"
     }
 ];
 

@@ -5,6 +5,8 @@ html {
     background-color:black;
     color:white;
     caret-color:white;
+    margin: 0;
+    padding: 0;
     
 }
 button:hover .ql-stroke,

@@ -7,9 +7,9 @@ const BlogCard = ({ blog }) => {
     <>
       <div className='w-1/2 border-2 mx-auto'>
       </div>
-      <div className='hover:bg-[#9cb5f5] m-3 p-4 flex-col mx-auto sm:w-2/3 md:w-1/2 cursor-pointer'>
+      <div className='hover:bg-slate-950 m-3 p-4 flex-col mx-auto sm:w-2/3 md:w-1/2 cursor-pointer'>
         <div className='flex flex-row mx-2'>
-          <img src="https://placehold.co/600x400/000000/FFF" alt="" className='h-7 w-7 rounded-full object-cover object-center' />
+          <img src="https://placehold.co/600x400/white/black" alt="" className='h-7 w-7 rounded-full object-cover object-center' />
           <p className='mx-4 font-semibold'>{blog.title}</p>
         </div>
         <div className='m-3 flex flex-row justify-between'>

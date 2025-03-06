@@ -15,11 +15,11 @@ const Search = () => {
 
   return (
     <div className='mx-auto'>
-      <div className='flex flex-col items-center gap-3 my-2'>
-        <p className='text-5xl md'>SENTENTIA</p>
+      <div className='flex flex-col items-center gap-3 my-24'>
+        <p className='text-5xl md font-bold'>SENTENTIA</p>
         <p className='text-2xl'>Draft the Writer Inside You</p>
-        <form className='bg-white flex justify-between p-1 rounded-full w-[80vw]'>
-          <input ref={inputRef} type="text" placeholder='Search Sententia for Authors, Blogs...' className='placeholder: text-center w-[80vw] bg-transparent outline-none p-1' />
+        <form className='bg-white flex justify-between p-1 rounded-lg w-[50vw]'>
+          <input ref={inputRef} type="text" placeholder='Search Sententia for Authors, Blogs...' className='text-black placeholder: text-center w-[80vw] bg-transparent outline-none p-1 ' />
           <img onClick={onSearch} className='w-9 h-9 cursor-pointer' src={search} alt="" />
         </form>
         <div>
