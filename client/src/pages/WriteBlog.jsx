@@ -3,6 +3,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Navbar from "../components/Navbar";
 import DateObject from "react-date-object";
+import Footer from '../components/Footer'
 import "./WriteBlog.css";
 const WriteBlog = () => {
   const [title, setTitle] = useState("");
@@ -90,6 +91,7 @@ const WriteBlog = () => {
         </form>
 
       </div>
+      <Footer/>
     </div>
   );
 };

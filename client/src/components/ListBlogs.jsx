@@ -3,9 +3,10 @@ import { AppContext } from "../context/AppContext";
 import left from "../assets/left-page.png";
 import right from "../assets/right-page.png";
 import BlogCard from "./BlogCard";
+import { NavLink } from "react-router-dom";
 
 const ListBlogs = () => {
-  const { isSearched, searchFilter, setSearchFilter, blogs } =useContext(AppContext);
+  const { isSearched, searchFilter, setSearchFilter, blogs } = useContext(AppContext);
   const [currentPage, setCurrentPage] = useState(1);
   return (
     <>
@@ -18,7 +19,9 @@ const ListBlogs = () => {
       </div>
       <div>
         {blogs.map((blog) => (
-          <BlogCard key={blog.id} blog={blog} />
+          <NavLink to='/read-blog'>
+            <BlogCard key={blog.id} blog={blog} />
+          </NavLink>
         ))}
       </div>
     </>

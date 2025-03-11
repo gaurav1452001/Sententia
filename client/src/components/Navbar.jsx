@@ -14,17 +14,18 @@ const Navbar = () => {
 
     return (
         <div className="flex justify-center mt-2 sm:mt-8"> {/* Adjusted top margin */}
-            <div className="bg-black flex justify-between p-2 items-center fixed w-[90%] sm:w-[95%] rounded-lg shadow-md shadow-zinc-800 border border-zinc-800 z-50"> {/* Adjusted width and padding */}
+            <div className="bg-black flex justify-between p-1 items-center fixed w-[90%] sm:w-[95%] rounded-xl shadow-md shadow-zinc-800 border border-zinc-800 z-50"> {/* Adjusted width and padding */}
                 <div className="w-32 invert">
-                    <img src={logo} alt="logo" />
+                    <NavLink to='/'><img src={logo} alt="logo" /></NavLink>
+
                 </div>
 
                 <div className="hidden sm:flex"> {/* Hidden on small screens */}
                     <ul className="flex gap-4 sm:gap-20"> {/* Adjusted gap for small screens */}
-                        <NavLink to='/'><li>HOME</li></NavLink>
-                        <NavLink to='/write-blog'><li>POST</li></NavLink>
-                        <NavLink to='/'><li>MY BLOG</li></NavLink>
-                        <NavLink to='/'><li>STATS</li></NavLink>
+                        <NavLink to='/' className={({ isActive }) => isActive ? "text-white" : "text-[#CCCCCC] hover:text-white"}><li>HOME</li></NavLink>
+                        <NavLink to='/write-blog' className={({ isActive }) => isActive ? "text-white" : "text-[#CCCCCC] hover:text-white"}><li>POST</li></NavLink>
+                        <NavLink to='/user-blog' className={({ isActive }) => isActive ? "text-white" : "text-[#CCCCCC] hover:text-white"}><li>MY BLOG</li></NavLink>
+                        <NavLink to='/stats' className={({ isActive }) => isActive ? "text-white" : "text-[#CCCCCC] hover:text-white"}><li>STATS</li></NavLink>
                     </ul>
                 </div>
 
@@ -52,8 +53,8 @@ const Navbar = () => {
                     <ul className="flex flex-col items-center gap-4 py-4">
                         <NavLink to='/' onClick={toggleMenu}><li>HOME</li></NavLink>
                         <NavLink to='/write-blog' onClick={toggleMenu}><li>POST</li></NavLink>
-                        <NavLink to='/' onClick={toggleMenu}><li>MY BLOG</li></NavLink>
-                        <NavLink to='/' onClick={toggleMenu}><li>STATS</li></NavLink>
+                        <NavLink to='/user-blog' onClick={toggleMenu}><li>MY BLOG</li></NavLink>
+                        <NavLink to='/stats' onClick={toggleMenu}><li>STATS</li></NavLink>
                     </ul>
                 </div>
             )}
