@@ -9,6 +9,10 @@ html {
     padding: 0;
     
 }
+::selection {
+    background-color: #333333;
+    color: white;
+}
 button:hover .ql-stroke,
 .ql-picker-label:hover .ql-stroke {
   fill: none;

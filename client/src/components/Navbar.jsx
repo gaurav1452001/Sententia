@@ -21,7 +21,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="hidden sm:flex"> {/* Hidden on small screens */}
-                    <ul className="flex gap-4 sm:gap-20"> {/* Adjusted gap for small screens */}
+                    <ul className="flex gap-4 sm:gap-20 font-semibold"> {/* Adjusted gap for small screens */}
                         <NavLink to='/' className={({ isActive }) => isActive ? "text-white" : "text-[#CCCCCC] hover:text-white"}><li>HOME</li></NavLink>
                         <NavLink to='/write-blog' className={({ isActive }) => isActive ? "text-white" : "text-[#CCCCCC] hover:text-white"}><li>POST</li></NavLink>
                         <NavLink to='/user-blog' className={({ isActive }) => isActive ? "text-white" : "text-[#CCCCCC] hover:text-white"}><li>MY BLOG</li></NavLink>

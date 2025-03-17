@@ -27,7 +27,7 @@ const Cover = () => {
     <div className='w-full h-full flex flex-col justify-center items-center relative'>
       <Dropzone onDrop={handleCoverDrop}>
         {({ getRootProps, getInputProps }) => (
-            <div {...getRootProps()} className='relative mt-7 w-11/12 sm:w-[3/4] h-36 sm:h-56 justify-center items-center flex flex-col cursor-pointer border border-gray-800'>
+            <div {...getRootProps()} className='relative mt-7 w-11/12 sm:w-[3/4] h-36 sm:h-56 justify-center items-center flex flex-col cursor-pointer'>
               <input {...getInputProps()} />
               {coverImage ? (
                 <img src={coverImage} alt="Cover" className='w-full h-full object-cover rounded-lg' />
