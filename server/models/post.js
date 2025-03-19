@@ -36,11 +36,9 @@ const postSchema = new Schema({
     },
     wordCount: {
         type: Number,
-        required: true
     },
     sentenceCount: {
         type: Number,
-        required: true
     }
 }, { timestamps: true });
 

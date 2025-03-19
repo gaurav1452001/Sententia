@@ -1,6 +1,12 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
 const userSchema=new Schema({
+    clerkUserId:{
+        type:String,
+        required:true,
+        unique:true,
+    },
+
     username:{
         type:String,
         required:true,
@@ -14,7 +20,7 @@ const userSchema=new Schema({
     blogName:{
         type:String
     },
-    image:{
+    img:{
         type:String,
     }
 },{timestamps:true})

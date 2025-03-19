@@ -1,54 +1,34 @@
 import {Webhook} from "svix";
 import User from "../models/user.js";
-//api controller function to manage the clerk with db
 export const clerkWebhooks=async(req,res)=>{
-    try{
-        //create a svix instance with clerk webhook secret
-        const whook=new Webhook(process.env.CLERK_WEBHOOK_SECRET)
-        //verify header
-        await whook.verify(JSON.stringify(req.body),{
-            "svix-id":req.headers["svix-id"],
-            "svix-timestamp":req.headers["svix-timestamp"],
-            "svix-signature":req.headers["svix-signature"]
+    const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
 
+    if(!WEBHOOK_SECRET){
+        throw new Error("Webhook secret needed");
+    }
+    const payload = req.body;
+    const headers = req.headers;
+
+    const wh = new Webhook(WEBHOOK_SECRET);
+    let evt;
+    try {
+        evt = wh.verify(payload, headers);
+    } catch (err) {
+        res.status(400).json({
+            message:"Webhook signature verification failed!",
+        });
+    }
+    // console.log(evt.data);
+    if (evt.type === "user.created") {
+        const newUser = new User({
+            clerkUserId:evt.data.id,
+            username: evt.data.username||evt.data.email_addresses[0].email_address,
+            email: evt.data.email_addresses[0].email_address,
+            img: evt.data.profile_image_url,
+        });
+        await newUser.save();
+        return res.status(200).json({
+            message:"webhook received",
         })
-        //get data from req body
-        const {data,type}=req.body
-        //switch fro diff cases
-        switch (type) {
-            case 'user.created':{
-                const userData={
-                    _id:data.id,
-                    email:data.email_addresses[0].email_address,
-                    name:data.first_name+" "+data.last_name,
-                    image:data.image_url,
-                    blogName:''
-                }
-                await User.create(userData)
-                res.json({})
-                break;
-            }
-            case 'user.updated':{
-                const userData={
-                    email:data.email_addresses[0].email_address,
-                    name:data.first_name+" "+data.last_name,
-                    image:data.image_url,
-                }
-                await User.findByIdAndUpdate(data.id,userData)
-                res.json({})
-                break;
-            }
-            case 'user.deleted':{
-                await User.findByIdAndDelete(data.id)
-                res.json({})
-                break;
-            }
-            default:
-                break;
-        
-        }
-    }catch(error){
-        console.log(error.message);
-        res.json({success:false,message:'Webhooks Error'})
     }
 }
