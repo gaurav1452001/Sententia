@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/logo_nobg.png";
-import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, UserButton, useAuth, useClerk } from "@clerk/clerk-react";
 import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     const { openSignIn } = useClerk();
-    const { user } = useUser();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { getToken } = useAuth()
+
+    useEffect(() => {
+        getToken().then(token => console.log(token));
+    }, []);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+
 
     return (
         <div className="flex justify-center mt-2 sm:mt-8"> {/* Adjusted top margin */}
@@ -35,16 +40,17 @@ const Navbar = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                         </svg>
                     </button>
-                    {user ? (
-                        <UserButton />
-                    ) : (
+                    <SignedOut>
                         <button
                             onClick={(e) => openSignIn()}
                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
                         >
                             Login
                         </button>
-                    )}
+                    </SignedOut>
+                    <SignedIn>
+                        <UserButton />
+                    </SignedIn>
                 </div>
             </div>
 
