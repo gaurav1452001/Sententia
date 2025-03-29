@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Quill} from "react-quill";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Navbar from "../components/Navbar";
@@ -11,7 +12,9 @@ import { useAuth } from "@clerk/clerk-react";
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import UploadImg from "../components/UploadImg";
+import ImageResize from "quill-image-resize-module-react";
 
+Quill.register("modules/imageResize", ImageResize);
 
 const WriteBlog = () => {
   const navigate = useNavigate();
@@ -58,6 +61,13 @@ const WriteBlog = () => {
       [{ align: [] }],
       ["code-block"],
     ],
+    clipboard: {
+      matchVisual: false,
+    }, 
+    imageResize:{
+      parchment: Quill.import('parchment'),
+      modules: ['Resize', 'DisplaySize']
+    }
   };
 
   const formats = [
@@ -109,11 +119,11 @@ const WriteBlog = () => {
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-5" id="my-form">
           <UploadImg type="image" setProgress={setProgress} setData={setCover}>
-             <button>
-              add a cover
-             </button>
+             <div className="text-center bg-white text-black p-2 mt-16 sm:my-2 w-40 border rounded-xl font-semibold disabled:cursor-not-allowed disabled:bg-gray-500">
+                Add Cover Image
+             </div>
           </UploadImg>
-          {/* {"Progress:"+progress+"%"} */}
+          {"Progress:"+progress+"%"}
           <input
             type="text"
             placeholder="Title"
