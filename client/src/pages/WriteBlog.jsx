@@ -8,8 +8,9 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import "./WriteBlog.css";
 import { useAuth } from "@clerk/clerk-react";
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import UploadImg from "../components/UploadImg";
 
 
 const WriteBlog = () => {
@@ -27,7 +28,7 @@ const WriteBlog = () => {
     },
     onSuccess: (res) => {
       toast.success("Blog Post Created");
-      
+
       navigate(`/blogs/${res.data.slug}`);
     }
   })
@@ -36,6 +37,8 @@ const WriteBlog = () => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [content, setContent] = useState("");
+  const [cover, setCover] = useState("");
+  const [progress, setProgress] = useState(0);
   const date = new DateObject();
 
   const modules = {
@@ -89,21 +92,28 @@ const WriteBlog = () => {
     mutation.mutate(data);
   }
 
+
   return (
     <div>
       <Navbar />
 
       <div className="w-[98%] sm:w-2/3  sm:mt-24  mx-auto my-5 px-5">
         <div className="flex justify-end">
-          <button disabled={mutation.isPending} type="submit" form="my-form" className=" bg-white text-black p-2 mt-16 sm:my-2 w-40 border rounded-xl font-semibold disabled:cursor-not-allowed disabled:bg-gray-500">
+          <button disabled={mutation.isPending||(progress>0&&progress<100)} type="submit" form="my-form" className=" bg-white text-black p-2 mt-16 sm:my-2 w-40 border rounded-xl font-semibold disabled:cursor-not-allowed disabled:bg-gray-500">
             {mutation.isPending ? "Loading..." : "Create Post"}
           </button>
         </div>
-        
+
         <div className="p-2 flex justify-end">
           {date.format("dddd DD MMMM")}
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-5" id="my-form">
+          <UploadImg type="image" setProgress={setProgress} setData={setCover}>
+             <button>
+              add a cover
+             </button>
+          </UploadImg>
+          {/* {"Progress:"+progress+"%"} */}
           <input
             type="text"
             placeholder="Title"

@@ -17,6 +17,7 @@
     "clsx": "^2.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
+    "imagekitio-react": "^4.3.0",
     "motion": "^12.5.0",
     "quill": "^2.0.3",
     "react": "^18.3.1",
