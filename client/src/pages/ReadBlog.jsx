@@ -2,8 +2,6 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import sample_user from "../assets/sample_user.jpg";
 import example_pic1 from "../assets/example_pic1.jpeg";
-import example_pic2 from "../assets/example_pic2.webp";
-import example_pic3 from "../assets/example_pic3.webp";
 import Footer from '../components/Footer';
 
 const ReadBlog = () => {

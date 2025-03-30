@@ -1,33 +1,42 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
-import left from "../assets/left-page.png";
-import right from "../assets/right-page.png";
 import BlogCard from "./BlogCard";
 import { NavLink } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const fetchPosts = async () => {
-  const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts`);
+const fetchPosts = async (pageParam) => {
+  const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts`,{
+    params:{page:pageParam}
+  });
   return res.data;
 };
 
 const ListBlogs = () => {
-  const { isPending, error, data } = useQuery({
-    queryKey: ['repoData'],
-    queryFn: () =>fetchPosts(),
-  });
-  if (isPending) {
-    return 'Loading...'
-  }
-  
-  if (error) {
-    return 'An error has occurred: ' + error.message
-  }
+  const {
+    data,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage,
+    status,
+  } = useInfiniteQuery({
+    queryKey: ['posts'],
+    queryFn: ({pageParam=1})=>fetchPosts(pageParam),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, pages) => lastPage.hasMore?pages.length+1:undefined,
+    
+  })
   console.log(data);
 
+  if (isFetching) { return 'Loading...'}
+  
+  if (error) { return "Something went wrong!"}
+  
+  console.log(data);
+  const allPosts=data?.pages?.flatMap(page => page.posts)||[];
   const { isSearched, searchFilter, setSearchFilter, blogs } = useContext(AppContext);
-  // const [currentPage, setCurrentPage] = useState(1);
   return (
     <>
       <div className="flex flex-col items-center">
@@ -38,10 +47,10 @@ const ListBlogs = () => {
         )}
       </div>
       <div>
-        {blogs.map((blog) => (
-          <NavLink to='/blogs/:slug'>
-            <BlogCard key={blog.id} blog={blog} />
-          </NavLink>
+        {allPosts.map(post => (
+          // <NavLink to='/blogs/:slug'>
+            <BlogCard key={post._id} post={post} />
+          // </NavLink> 
         ))}
       </div>
     </>

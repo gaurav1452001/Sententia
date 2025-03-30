@@ -24,13 +24,14 @@ const UploadImg = ({ children, type, setProgress, setData }) => {
     const ref=useRef(null);
 
     const onError = (err) => {
-        console.log(err);
+        console.log(err);   
         toast.error("Image Upload Failed");
     };
     const onSuccess = (res) => {
         console.log(res);
         setData(res);
-        toast.success("Cover Image Added");
+        // toast.success("Cover Image Added");
+        console.log(cover.filePath);
     };
     
     const onUploadProgress = (progress) => {

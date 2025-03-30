@@ -3,12 +3,19 @@ import Post from '../models/post.js';
 import User from '../models/user.js';
 
 export const getPosts = async (req, res) => {
-    const posts = await Post.find();
-    res.status(200).json(posts);
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 2;
+
+    const posts = await Post.find().limit(limit).skip((page - 1) * limit);
+    const totalPosts=await Post.countDocuments();
+    const hasMore=page*limit<totalPosts;
+    res.status(200).json({posts, hasMore});
 };
 
 export const getPost = async (req, res) => {
     const post = await Post.findOne({ slug: req.params.slug });
+    
+
     res.status(200).json(post);
 };
 
