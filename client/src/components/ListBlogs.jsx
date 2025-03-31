@@ -3,11 +3,14 @@ import { AppContext } from "../context/AppContext";
 import BlogCard from "./BlogCard";
 import { NavLink } from "react-router-dom";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
+import Spinner from "./Spinner";
 
 const fetchPosts = async (pageParam) => {
-  const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts`,{
-    params:{page:pageParam}
+  const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts`, {
+    params: { page: pageParam,limit:2 }
+     
   });
   return res.data;
 };
@@ -23,19 +26,19 @@ const ListBlogs = () => {
     status,
   } = useInfiniteQuery({
     queryKey: ['posts'],
-    queryFn: ({pageParam=1})=>fetchPosts(pageParam),
+    queryFn: ({ pageParam = 1 }) => fetchPosts(pageParam),
     initialPageParam: 1,
-    getNextPageParam: (lastPage, pages) => lastPage.hasMore?pages.length+1:undefined,
-    
+    getNextPageParam: (lastPage, pages) => lastPage.hasMore ? pages.length + 1 : undefined,
+
   })
   console.log(data);
 
-  if (isFetching) { return 'Loading...'}
-  
-  if (error) { return "Something went wrong!"}
-  
+  if (isFetching) { <Spinner /> }
+
+  if (error) { return "Something went wrong!" }
+
   console.log(data);
-  const allPosts=data?.pages?.flatMap(page => page.posts)||[];
+  const allPosts = data?.pages?.flatMap(page => page.posts) || [];
   const { isSearched, searchFilter, setSearchFilter, blogs } = useContext(AppContext);
   return (
     <>
@@ -46,13 +49,25 @@ const ListBlogs = () => {
           </div>
         )}
       </div>
-      <div>
+      <InfiniteScroll
+        dataLength={allPosts.length} 
+        next={fetchNextPage}
+        hasMore={hasNextPage}
+        loader={<Spinner/ >}
+        endMessage={
+          <p className="text-center text-[#999999] text-sm mt-4">
+            <b>You have reached the end!</b>
+          </p>
+        }
+      
+      >
         {allPosts.map(post => (
           // <NavLink to='/blogs/:slug'>
-            <BlogCard key={post._id} post={post} />
+          <BlogCard key={post._id} post={post} />
           // </NavLink> 
         ))}
-      </div>
+      </InfiniteScroll>
+
     </>
   );
 };

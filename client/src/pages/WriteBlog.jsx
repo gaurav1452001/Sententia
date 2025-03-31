@@ -48,7 +48,6 @@ const WriteBlog = () => {
 
 
   useEffect(() => {
-    console.log("i was here");
     img && setContent(prev => prev + `<p><img src="${img.url}"/></p>`);
   }, [img]);
 
@@ -147,13 +146,13 @@ const WriteBlog = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
     const data = {
       title: title,
-      img:cover.filePath||"",
+      img:cover.url||"",
       desc: desc,
       content: content,
     };
+    
     console.log(data);
     mutation.mutate(data);
   };

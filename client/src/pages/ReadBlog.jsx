@@ -1,15 +1,37 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
-import sample_user from "../assets/sample_user.jpg";
-import example_pic1 from "../assets/example_pic1.jpeg";
 import Footer from '../components/Footer';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import DOMPurify from 'dompurify'
+import ReactHtmlParser from 'html-react-parser';
+
+const fetchPost = async (slug) => {
+  const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts/${slug}`);
+  console.log(res.data);
+  return res.data;
+};
 
 const ReadBlog = () => {
+  const sanitizedData = () => ({
+    __html: DOMPurify.sanitize(data)
+  });
+
+  const { slug } = useParams();
+  const { isPending, error, data } = useQuery({
+    queryKey: ["post", slug],
+    queryFn: () => fetchPost(slug),
+  });
+  if (isPending) return <div className='flex justify-center items-center h-screen'>Loading...</div>
+  if (error) return <div className='flex justify-center items-center h-screen'>Something went wrong!{error.message}</div>;
+  if (!data) return <div className='flex justify-center items-center h-screen'>No Such Post Found!</div>;
+
   return (
     <div>
       <Navbar />
       <div className='mt-28 mx-44'>
-        <aside className="fixed left-0 z-40 w-64 ml-24  transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+        <aside className="fixed left-0 z-</div>40 w-64 ml-24  transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
           <div className="h-full overflow-y-auto p-3">
             <ul className="space-y-1 text-sm flex flex-col">
               <li>
@@ -32,7 +54,7 @@ const ReadBlog = () => {
                   <span className="flex-1 ms-3 whitespace-nowrap">Open Questions</span>
                 </a>
               </li>
-    
+
             </ul>
           </div>
         </aside>
@@ -42,24 +64,28 @@ const ReadBlog = () => {
             ← BACK TO HOME PAGE
           </span>
           <span className='text-[#999999] mt-7'>
-            September 1, 2024
+            {new Date(data.createdAt).toLocaleDateString('en-US', {
+              day: 'numeric',
+              month: 'short',
+              year: 'numeric'
+            }).toUpperCase()}
           </span>
           <div className='text-6xl font-semibold mt-3'>
-          The Nonwriter's Guide to Writing
-          </div>   
+            {data.title}
+          </div>
           <div className='text-[#B3B3B3] mt-7'>
-          Toxic Preconditions (And How to Fight Them)  
+            {data.desc}
           </div>
           <div className='flex flex-row mt-9 gap-5 text-lg'>
-            <img src={sample_user} className='size-9 md:size-12 rounded-md' alt="" />
+            <img src={data.user.img} className='size-9 md:size-12 rounded-md' alt="" />
             <div className='flex flex-col'>
-              <span className='text-[#CCCCCC] text-base'>Posted By Jacob</span>
+              <span className='text-[#CCCCCC] text-base'>Posted By {data.user.username}</span>
               <span className='text-[#B3B3B3] text-base'>19 minutes read</span>
             </div>
           </div>
 
           <hr class="h-px my-8 bg-neutral-800 border-0"></hr>
-           <div>
+          {/* <div>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, laborum animi! Fugit, nam autem. Vitae provident similique accusantium earum totam corrupti culpa quibusdam, alias itaque dolore enim aperiam? Cumque, vitae voluptatibus. Rerum quibusdam nulla ipsa nostrum dolorum unde repellat tempore, ut doloremque.<br/> <br/>
             Non aperiam esse labore fuga perferendis fugit quam veniam sequi inventore tempore, laudantium vero! Possimus nam recusandae saepe tenetur officiis, illum maiores, blanditiis <br/><br/>
             unde corrupti sequi repellat quam voluptates perferendis aliquam iusto, repellendus numquam veniam harum? Sequi ad, expedita eos doloribus in esse earum eligendi voluptatum repellendus a provident pariatur hic porro libero explicabo repudiandae aut perferendis consequatur?
@@ -69,7 +95,15 @@ const ReadBlog = () => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, laborum animi! Fugit, nam autem. Vitae provident similique accusantium earum totam corrupti culpa quibusdam, alias itaque dolore enim aperiam? Cumque, vitae voluptatibus. Rerum quibusdam nulla ipsa nostrum dolorum unde repellat tempore, ut doloremque.<br/> <br/>
             Non aperiam esse labore fuga perferendis fugit quam veniam sequi inventore tempore, laudantium vero! Possimus nam recusandae saepe tenetur officiis, illum maiores, blanditiis <br/><br/>
             unde corrupti sequi repellat quam voluptates perferendis aliquam iusto, repellendus numquam veniam harum? Sequi ad, expedita eos doloribus in esse earum eligendi voluptatum repellendus a provident pariatur hic porro libero explicabo repudiandae aut perferendis consequatur?
-            </div>   
+            </div>    */}
+          {/* <div dangerouslySetInnerHTML={{__html: data.content}}/> */}
+          <div>
+
+
+            {ReactHtmlParser(data.content)}
+          </div>
+
+          {<p>thisis normal</p>}
         </div>
       </div>
       <Footer />

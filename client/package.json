@@ -16,7 +16,9 @@
     "axios": "^1.8.3",
     "clsx": "^2.1.1",
     "cors": "^2.8.5",
+    "dompurify": "^3.2.4",
     "dotenv": "^16.4.7",
+    "html-react-parser": "^5.2.2",
     "imagekitio-react": "^4.3.0",
     "motion": "^12.5.0",
     "quill": "^2.0.3",
@@ -25,10 +27,13 @@
     "react-date-object": "^2.1.9",
     "react-dom": "^18.3.1",
     "react-dropzone": "^14.3.8",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-quill": "^2.0.0",
     "react-router-dom": "^7.1.1",
+    "react-spinners": "^0.15.0",
     "react-toastify": "^11.0.2",
-    "tailwind-merge": "^3.0.2"
+    "tailwind-merge": "^3.0.2",
+    "timeago.js": "^4.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
