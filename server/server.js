@@ -26,19 +26,6 @@ app.use(function (req, res, next) {
 });
 
 
-// app.get("/auth-state", (req, res) => {
-//     const authState=req.auth;
-//     res.json(authState);
-// });
-
-// app.get("/protect", (req, res) => {
-//     const {userId}=req.auth;
-//     if(!userId){
-//         return res.status(401).json("Unauthorized");
-//     }
-//     res.status(200).json("content");
-// });
-
 app.get("/protect2", requireAuth(), (req, res) => {
 
     res.status(200).json("crazy");
@@ -50,8 +37,6 @@ app.use("/comments", commentRouter);
 
 //port
 const PORT = process.env.PORT || 5000
-
-// Sentry.setupExpressErrorHandler(app);
 
 //try catching error
 app.use((error, req, res, next) => {
@@ -65,6 +50,6 @@ app.use((error, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-    connectDB()
+    connectDB();
     console.log(`Server is running on ${PORT}`);
 })

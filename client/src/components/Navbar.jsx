@@ -19,7 +19,7 @@ const Navbar = () => {
 
     return (
         <div className="flex justify-center mt-2 sm:mt-8"> {/* Adjusted top margin */}
-            <div className="backdrop-filter backdrop-blur-lg bg-opacity-30 bg-black flex justify-between p-1 items-center fixed w-[90%] sm:w-[95%] rounded-xl shadow-md shadow-zinc-800 border border-zinc-800 z-50"> {/* Adjusted width and padding */}
+            <div className="backdrop-filter backdrop-blur-lg bg-opacity-30 bg-[#0f1111] flex justify-between p-1 items-center fixed w-[90%] sm:w-[95%] rounded-xl shadow-md shadow-zinc-800 border border-zinc-800 z-50"> {/* Adjusted width and padding */}
                 <div className="w-32 invert">
                     <NavLink to='/'><img src={logo} alt="logo" /></NavLink>
 

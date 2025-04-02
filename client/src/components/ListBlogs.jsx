@@ -10,7 +10,6 @@ import Spinner from "./Spinner";
 const fetchPosts = async (pageParam) => {
   const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts`, {
     params: { page: pageParam,limit:2 }
-     
   });
   return res.data;
 };
@@ -27,9 +26,9 @@ const ListBlogs = () => {
   } = useInfiniteQuery({
     queryKey: ['posts'],
     queryFn: ({ pageParam = 1 }) => fetchPosts(pageParam),
+    
     initialPageParam: 1,
     getNextPageParam: (lastPage, pages) => lastPage.hasMore ? pages.length + 1 : undefined,
-
   })
   console.log(data);
 
@@ -53,21 +52,19 @@ const ListBlogs = () => {
         dataLength={allPosts.length} 
         next={fetchNextPage}
         hasMore={hasNextPage}
-        loader={<Spinner/ >}
+        loader={<Spinner />}
         endMessage={
           <p className="text-center text-[#999999] text-sm mt-4">
             <b>You have reached the end!</b>
           </p>
         }
-      
       >
         {allPosts.map(post => (
-          // <NavLink to='/blogs/:slug'>
-          <BlogCard key={post._id} post={post} />
-          // </NavLink> 
+          <NavLink to={`/blogs/${post.slug}`}>
+            <BlogCard key={post._id} post={post} />
+          </NavLink> 
         ))}
       </InfiniteScroll>
-
     </>
   );
 };

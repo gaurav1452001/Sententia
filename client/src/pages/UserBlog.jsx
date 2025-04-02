@@ -6,7 +6,6 @@ import Footer from '../components/Footer';
 
 const UserBlog = () => {
   const { user } = useUser();
-
   // Example data
   const stats = {
     subscribers: 1234,
@@ -57,6 +56,9 @@ const UserBlog = () => {
     <div>
       <Navbar/>
       <div className='mt-16 mx-auto flex flex-col items-center justify-center w-11/12 sm:w-3/4'>
+        <div className='border border-white text-xl p-6'>
+          {user.blogName||"Untitled Blog"}
+        </div>
         <Cover/>
         
         {/* Overview Section */}

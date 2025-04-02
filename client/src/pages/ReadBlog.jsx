@@ -1,109 +1,117 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import DOMPurify from 'dompurify'
-import ReactHtmlParser from 'html-react-parser';
+import DOMPurify from 'dompurify';
+import '../styles/quill-content.css';
 
 const fetchPost = async (slug) => {
   const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts/${slug}`);
-  console.log(res.data);
   return res.data;
 };
 
 const ReadBlog = () => {
-  const sanitizedData = () => ({
-    __html: DOMPurify.sanitize(data)
-  });
-
+  const [headings, setHeadings] = useState([]);
   const { slug } = useParams();
-  const { isPending, error, data } = useQuery({
+
+  const { isLoading, error, data } = useQuery({
     queryKey: ["post", slug],
     queryFn: () => fetchPost(slug),
+    enabled: !!slug, // Ensure the query runs only if the slug exists
   });
-  if (isPending) return <div className='flex justify-center items-center h-screen'>Loading...</div>
-  if (error) return <div className='flex justify-center items-center h-screen'>Something went wrong!{error.message}</div>;
-  if (!data) return <div className='flex justify-center items-center h-screen'>No Such Post Found!</div>;
+
+  useEffect(() => {
+    if (data?.content) {
+      // Parse the content to extract headings
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(data.content, 'text/html');
+      const extractedHeadings = Array.from(doc.querySelectorAll('h1, h2, h3')).map((heading, index) => ({
+        id: `heading-${index}`,
+        text: heading.textContent,
+        tag: heading.tagName.toLowerCase(),
+      }));
+
+      // Add IDs to headings in the content for scrolling
+      extractedHeadings.forEach((heading, index) => {
+        const element = doc.querySelectorAll('h1, h2, h3')[index];
+        if (element) {
+          element.id = heading.id;
+        }
+      });
+
+      setHeadings(extractedHeadings);
+
+      // Update the sanitized content with IDs
+      const updatedContent = doc.body.innerHTML;
+      data.content = updatedContent;
+    }
+  }, [data]);
+
+  const sanitizedData = (content) => ({
+    __html: DOMPurify.sanitize(content),
+  });
+
+  if (isLoading) {
+    return <div className='flex justify-center items-center h-screen'>Loading...</div>;
+  }
+
+  if (error) {
+    return <div className='flex justify-center items-center h-screen'>Something went wrong! {error.message}</div>;
+  }
+
+  if (!data) {
+    return <div className='flex justify-center items-center h-screen'>No Such Post Found!</div>;
+  }
 
   return (
     <div>
       <Navbar />
       <div className='mt-28 mx-44'>
-        <aside className="fixed left-0 z-</div>40 w-64 ml-24  transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+        {/* Dynamic Sidebar */}
+        <aside className="fixed left-0 z-40 w-64 ml-24 transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
           <div className="h-full overflow-y-auto p-3">
             <ul className="space-y-1 text-sm flex flex-col">
-              <li>
-                <a href="#" className="flex items-center p-2 hover:text-zinc-300 text-[#999999]">
-                  <span className="ms-3">Design Criteria</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" className="flex items-center p-2 hover:text-zinc-300 text-[#999999]">
-                  <span className="flex-1 ms-3 whitespace-nowrap">Achieving LSP-Usability</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" className="flex items-center p-2 hover:text-zinc-300 text-[#999999]">
-                  <span className="flex-1 ms-3 whitespace-nowrap">Achieving Runnability</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" className="flex items-center p-2 hover:text-zinc-300 text-[#999999]">
-                  <span className="flex-1 ms-3 whitespace-nowrap">Open Questions</span>
-                </a>
-              </li>
-
+              {headings.map((heading) => (
+                <li key={heading.id}>
+                  <a
+                    href={`#${heading.id}`}
+                    className="flex items-center p-2 hover:text-zinc-300 text-[#999999]"
+                  >
+                    {heading.text}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </aside>
 
-        <div className="pl-4 pt-3 flex flex-col sm:ml-36 ">
-          <span className='text-[#CCCCCC]'>
-            ← BACK TO HOME PAGE
-          </span>
+        {/* Blog Content */}
+        <div className="pl-4 pt-3 flex flex-col sm:ml-36">
+
+          <a href="/" className='text-[#CCCCCC]'>← BACK TO HOME PAGE</a>
           <span className='text-[#999999] mt-7'>
             {new Date(data.createdAt).toLocaleDateString('en-US', {
               day: 'numeric',
               month: 'short',
-              year: 'numeric'
+              year: 'numeric',
             }).toUpperCase()}
           </span>
-          <div className='text-6xl font-semibold mt-3'>
-            {data.title}
-          </div>
-          <div className='text-[#B3B3B3] mt-7'>
-            {data.desc}
-          </div>
+          <div className='text-6xl font-semibold mt-3'>{data.title}</div>
+          <div className='text-[#B3B3B3] mt-7'>{data.desc}</div>
           <div className='flex flex-row mt-9 gap-5 text-lg'>
-            <img src={data.user.img} className='size-9 md:size-12 rounded-md' alt="" />
+            <img src={data.user.profileimg} className='size-9 md:size-12 rounded-md' alt="" />
             <div className='flex flex-col'>
               <span className='text-[#CCCCCC] text-base'>Posted By {data.user.username}</span>
               <span className='text-[#B3B3B3] text-base'>19 minutes read</span>
             </div>
           </div>
-
-          <hr class="h-px my-8 bg-neutral-800 border-0"></hr>
-          {/* <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, laborum animi! Fugit, nam autem. Vitae provident similique accusantium earum totam corrupti culpa quibusdam, alias itaque dolore enim aperiam? Cumque, vitae voluptatibus. Rerum quibusdam nulla ipsa nostrum dolorum unde repellat tempore, ut doloremque.<br/> <br/>
-            Non aperiam esse labore fuga perferendis fugit quam veniam sequi inventore tempore, laudantium vero! Possimus nam recusandae saepe tenetur officiis, illum maiores, blanditiis <br/><br/>
-            unde corrupti sequi repellat quam voluptates perferendis aliquam iusto, repellendus numquam veniam harum? Sequi ad, expedita eos doloribus in esse earum eligendi voluptatum repellendus a provident pariatur hic porro libero explicabo repudiandae aut perferendis consequatur?
-            </div>
-            <img src={example_pic1} className='py-14 rounded-lg' alt="" />   
-            <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, laborum animi! Fugit, nam autem. Vitae provident similique accusantium earum totam corrupti culpa quibusdam, alias itaque dolore enim aperiam? Cumque, vitae voluptatibus. Rerum quibusdam nulla ipsa nostrum dolorum unde repellat tempore, ut doloremque.<br/> <br/>
-            Non aperiam esse labore fuga perferendis fugit quam veniam sequi inventore tempore, laudantium vero! Possimus nam recusandae saepe tenetur officiis, illum maiores, blanditiis <br/><br/>
-            unde corrupti sequi repellat quam voluptates perferendis aliquam iusto, repellendus numquam veniam harum? Sequi ad, expedita eos doloribus in esse earum eligendi voluptatum repellendus a provident pariatur hic porro libero explicabo repudiandae aut perferendis consequatur?
-            </div>    */}
-          {/* <div dangerouslySetInnerHTML={{__html: data.content}}/> */}
-          <div>
-
-
-            {ReactHtmlParser(data.content)}
-          </div>
-
-          {<p>thisis normal</p>}
+          <hr className="h-px my-8 bg-neutral-800 border-0"></hr>
+          <div
+            className="quill-content text-gray-200"
+            dangerouslySetInnerHTML={sanitizedData(data.content)}
+          />
         </div>
       </div>
       <Footer />

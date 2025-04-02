@@ -6,11 +6,9 @@ const userSchema = new Schema({
         required: true,
         unique: true,
     },
-
     username: {
         type: String,
         required: true,
-        unique: true,
     },
     email: {
         type: String,
@@ -18,9 +16,14 @@ const userSchema = new Schema({
         unique: true
     },
     blogName: {
-        type: String
+        type: String,
+        required: true,
     },
-    img: {
+    profileimg: {
+        type: String,
+        required: true,
+    },
+    coverimg: {
         type: String,
     },
     savedPosts: {
