@@ -1,6 +1,6 @@
 import React from 'react'
 import { format } from "timeago.js";
-import placeholderimg from "../assets/sample_blog_img.jpg";
+import placeholderimg from "../assets/sample_blog_img.png";
 const BlogCard = ({ post }) => {
   return (
     <>
@@ -9,7 +9,7 @@ const BlogCard = ({ post }) => {
       <div className='hover:bg-[#18181B] m-3 py-2 flex-col mx-auto sm:w-2/3 md:w-1/2 cursor-pointer'>
         <div className='flex flex-row mx-2 items-center'>
           <img src={post.user.profileimg} alt="" className='h-7 w-7 rounded-full object-cover object-center' />
-          <p className='mx-4 font-semibold'>{post.title}</p>
+          <p className='mx-4 font-semibold'>{post.user.blogName}</p>
           <p className='text-xs text-[#999999]'>{format(post.createdAt)}</p>
         </div>
         <div className='m-3 flex flex-row justify-between'>

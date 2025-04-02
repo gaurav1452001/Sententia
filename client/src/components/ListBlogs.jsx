@@ -54,9 +54,9 @@ const ListBlogs = () => {
         hasMore={hasNextPage}
         loader={<Spinner />}
         endMessage={
-          <p className="text-center text-[#999999] text-sm mt-4">
-            <b>You have reached the end!</b>
-          </p>
+          <div className="py-9 text-center text-[#999999] text-sm mt-4">
+           
+          </div>
         }
       >
         {allPosts.map(post => (
