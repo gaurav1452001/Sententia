@@ -11,6 +11,7 @@ const fetchPosts = async (pageParam) => {
   const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts`, {
     params: { page: pageParam,limit:2 }
   });
+  console.log(res.data);
   return res.data;
 };
 
@@ -48,6 +49,7 @@ const ListBlogs = () => {
           </div>
         )}
       </div>
+    
       <InfiniteScroll
         dataLength={allPosts.length} 
         next={fetchNextPage}

@@ -1,14 +1,16 @@
-import User from '../models/user.js'
+import User from '../models/user.js';
 
 export const getUser = async (req, res) => {
-    try {
-        const { clerkUserId } = req.params;
-        const user = await User.findOne({ clerkUserId });
+    const clerkUserId = req.auth.userId;
 
+    if (!clerkUserId) {
+        return res.status(401).json("Not authenticated!");
+    }
+    try {
+        const user = await User.findOne({ clerkUserId });
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
-
         res.status(200).json(user);
     } catch (error) {
         console.error("Error fetching user:", error);
@@ -23,13 +25,13 @@ export const updateUser = async (req, res) => {
 
         // Check if the requesting user matches the user being updated
         if (clerkUserId !== requestingUserId) {
-            return res.status(403).json({ 
-                message: "Unauthorized: You can only update your own profile" 
+            return res.status(403).json({
+                message: "Unauthorized: You can only update your own profile"
             });
         }
 
         const updates = req.body;
-        
+
         const user = await User.findOneAndUpdate(
             { clerkUserId },
             updates,
