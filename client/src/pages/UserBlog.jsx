@@ -1,84 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { useUser } from '@clerk/clerk-react';
+import React from 'react';
+import {  useUser } from '@clerk/clerk-react';
 import Navbar from '../components/Navbar';
 import Cover from '../components/Cover';
 import Footer from '../components/Footer';
-import BlogCard from "../components/BlogCard";
-import { NavLink } from "react-router-dom";
-import { useInfiniteQuery} from "@tanstack/react-query";
-import InfiniteScroll from "react-infinite-scroll-component";
-import axios from "axios";
 import Spinner from "../components/Spinner";
+import ListUserBlogs from "../components/listUserBlogs";
 
-
-
-const fetchPosts = async (pageParam, userId) => {
-  const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts/users/${userId}`, {
-    params: { page: pageParam, limit: 2 }
-  });
-  console.log(res.data);
-  return res.data;
-};
 
 const UserBlog = () => {
-  const { user } = useUser();
-  const {
-    data,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-    status,
-  } = useInfiniteQuery({
-    queryKey: ['posts','users', user?.id],
-    queryFn: ({ pageParam = 1 }) => fetchPosts(pageParam, user.id),
-    enabled: !!user?.id,
-    initialPageParam: 1,
-    getNextPageParam: (lastPage, pages) => lastPage.hasMore ? pages.length + 1 : undefined,
-  });
+  const { user, isLoaded: isUserLoaded } = useUser();
 
-  console.log(data);
+  // Add check for Clerk loading state
+  if (!isUserLoaded) { 
+    return (
+      <div>
+        <Navbar />
+        <div className='flex justify-center items-center h-screen'>
+          <Spinner />
+        </div>
+        <Footer />
+      </div>
+    ); 
+  }
 
-  if (isFetching) { <Spinner /> }
-
-  if (error) { return "Something went wrong!" }
-  const allPosts = data?.pages?.flatMap(page => page.posts) || [];
-
-  // Example data
-  const stats = {
-    subscribers: 1234,
-    notifications: 5,
-    views: 8547,
-    stats: {
-      words: 45678,
-      sentences: 2345,
-      posts: 23
-    }
-  };
-
-  const blogPosts = [
-    {
-      id: 1,
-      title: "The Art of Creative Writing",
-      excerpt: "Discover the secrets of engaging your readers through powerful storytelling...",
-      date: "March 10, 2024",
-      readTime: "8 min read",
-      views: 1234,
-      likes: 89
-    },
-    {
-      id: 2,
-      title: "Understanding Modern Architecture",
-      excerpt: "Exploring the principles behind contemporary architectural designs...",
-      date: "March 8, 2024",
-      readTime: "12 min read",
-      views: 956,
-      likes: 67
-    },
-    // Add more blog posts as needed
-  ];
-
+  // Move this check after loading check
   if (!user) {
     return (
       <div>
@@ -91,12 +36,23 @@ const UserBlog = () => {
     );
   }
 
+  const stats = {
+    subscribers: 1234,
+    notifications: 5,
+    views: 8547,
+    stats: {
+      words: 45678,
+      sentences: 2345,
+      posts: 23
+    }
+  };
+
   return (
     <div>
       <Navbar />
       <div className='mt-16 mx-auto flex flex-col items-center justify-center w-11/12 sm:w-3/4'>
         <div className=' text-xl p-6'>
-          {user.blogName || "Untitled Blog"}
+          {user.fullName+"'s Blog" || "Untitled Blog"}
         </div>
         <Cover />
 
@@ -129,23 +85,7 @@ const UserBlog = () => {
       <h2 className="w-[60%] mx-auto mt-10 text-2xl font-bold text-white mb-6">Your Blog Posts</h2>
       <div className='w-[60%] border-[1px] border-[#2d2f30] mx-auto'>
       </div>
-      <InfiniteScroll
-              dataLength={allPosts.length}
-              next={fetchNextPage}
-              hasMore={hasNextPage}
-              loader={<Spinner />}
-              endMessage={
-                <div className="py-9 text-center text-[#999999] text-sm mt-4">
-                   
-                </div>
-              }
-            >
-              {allPosts.map(post => (
-                <NavLink to={`/blogs/${post.slug}`}>
-                  <BlogCard key={post._id} post={post} />
-                </NavLink>
-              ))}
-            </InfiniteScroll>
+      <ListUserBlogs/>
       <Footer />
     </div>
   );

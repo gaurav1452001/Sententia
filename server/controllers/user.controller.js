@@ -2,9 +2,8 @@ import User from '../models/user.js';
 
 export const getUser = async (req, res) => {
     const clerkUserId = req.auth.userId;
-
     if (!clerkUserId) {
-        return res.status(401).json("Not authenticated!");
+        return res.status(401).json("Unauthorized");
     }
     try {
         const user = await User.findOne({ clerkUserId });
