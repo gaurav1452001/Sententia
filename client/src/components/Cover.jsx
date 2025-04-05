@@ -24,7 +24,7 @@ const Cover = () => {
   };
 
   return (
-    <div className='w-full h-full flex flex-col justify-center items-center relative rounded-lg dark:bg-gray-800'>
+    <div className='border border-white w-full h-full flex flex-col justify-center items-center relative rounded-lg dark:bg-gray-800'>
       <Dropzone onDrop={handleCoverDrop}>
         {({ getRootProps, getInputProps }) => (
             <div {...getRootProps()} className='relative mt-7 w-11/12 sm:w-[3/4] h-36 sm:h-56 justify-center items-center flex flex-col cursor-pointer'>
@@ -32,7 +32,9 @@ const Cover = () => {
               {coverImage ? (
                 <img src={coverImage} alt="Cover" className='w-full h-full object-cover rounded-lg' />
               ) : (
-                <p className='flex text-center text-gray-500'>Select a Cover Image</p>
+                // <img src="https://placehold.co/1000x400?text=Upload+Cover+Image" alt="Cover" className='w-full h-full object-cover rounded-lg' />
+
+                <p className='flex text-center text-gray-500 '>Select a Cover Image</p>
               )}
             </div>
           

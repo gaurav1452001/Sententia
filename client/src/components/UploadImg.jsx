@@ -21,21 +21,18 @@ const authenticator = async () => {
 
 const UploadImg = ({ children, type, setProgress, setData }) => {
 
-    const ref=useRef(null);
+    const ref = useRef(null);
 
     const onError = (err) => {
-        console.log(err);   
         toast.error("Image Upload Failed");
     };
     const onSuccess = (res) => {
         console.log(res);
         setData(res);
-        // toast.success("Cover Image Added");
-        console.log(cover.filePath);
+        toast.success("Image Added");
     };
-    
+
     const onUploadProgress = (progress) => {
-        console.log(progress);
         setProgress(Math.round((progress.loaded / progress.total) * 100));
     };
 
@@ -51,14 +48,17 @@ const UploadImg = ({ children, type, setProgress, setData }) => {
                 onSuccess={onSuccess}
                 onUploadProgress={onUploadProgress}
                 className="hidden"
-                ref={ref}// using the reference in the div below we can automatically trigger the file input without it being displayed
+                ref={ref}
                 accept={`${type}/*`}
             />
-            <div className='cursor-pointer' onClick={()=>ref.current.click()}>
+            <div
+                className='w-full h-full'
+                onClick={() => ref.current.click()}
+            >
                 {children}
             </div>
         </IKContext>
     );
 };
 
-export default UploadImg;    
+export default UploadImg;

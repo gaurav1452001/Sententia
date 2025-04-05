@@ -1,17 +1,38 @@
 import React from 'react';
-import {  useUser } from '@clerk/clerk-react';
+import { useUser, useAuth } from '@clerk/clerk-react';
 import Navbar from '../components/Navbar';
 import Cover from '../components/Cover';
 import Footer from '../components/Footer';
 import Spinner from "../components/Spinner";
 import ListUserBlogs from "../components/listUserBlogs";
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import Coverdev from '../components/Coverdev';
 
+const fetchUserData = async (clerkId, token) => {
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/users/${clerkId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return res.data;
+};
 
 const UserBlog = () => {
   const { user, isLoaded: isUserLoaded } = useUser();
+  const { getToken } = useAuth();
+
+  const { data: userData, isLoading} = useQuery({
+    queryKey: ["users", user?.id],
+    queryFn: async () => {
+      const token = await getToken();
+      return fetchUserData(user?.id, token);
+    },
+    enabled: !!user?.id,
+  });
 
   // Add check for Clerk loading state
-  if (!isUserLoaded) { 
+  if (!isUserLoaded||isLoading) {
     return (
       <div>
         <Navbar />
@@ -20,7 +41,7 @@ const UserBlog = () => {
         </div>
         <Footer />
       </div>
-    ); 
+    );
   }
 
   // Move this check after loading check
@@ -46,15 +67,15 @@ const UserBlog = () => {
       posts: 23
     }
   };
-
   return (
     <div>
       <Navbar />
       <div className='mt-16 mx-auto flex flex-col items-center justify-center w-11/12 sm:w-3/4'>
-        <div className=' text-xl p-6'>
-          {user.fullName+"'s Blog" || "Untitled Blog"}
+        <div className='text-xl p-6'>
+          {userData?.blogName || "Untitled Blog"}
         </div>
-        <Cover />
+        
+        <Coverdev />
 
         {/* Overview Section */}
         <div className="w-full mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-10">
@@ -79,13 +100,13 @@ const UserBlog = () => {
             </div>
           </div>
         </div>
-        
+
       </div>
-      
+
       <h2 className="w-[60%] mx-auto mt-10 text-2xl font-bold text-white mb-6">Your Blog Posts</h2>
       <div className='w-[60%] border-[1px] border-[#2d2f30] mx-auto'>
       </div>
-      <ListUserBlogs/>
+      <ListUserBlogs />
       <Footer />
     </div>
   );

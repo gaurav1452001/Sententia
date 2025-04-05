@@ -157,8 +157,6 @@ const WriteBlog = () => {
     mutation.mutate(data);
   };
 
-
-
   return (
     <div>
       <Navbar />

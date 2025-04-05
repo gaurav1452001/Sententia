@@ -17,7 +17,7 @@ const ReadBlog = () => {
   const { slug } = useParams();
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["post", slug],
+    queryKey: ["posts", slug],
     queryFn: () => fetchPost(slug),
     enabled: !!slug, // Ensure the query runs only if the slug exists
   });
