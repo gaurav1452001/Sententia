@@ -1,7 +1,6 @@
 import React from 'react';
 import { useUser, useAuth } from '@clerk/clerk-react';
 import Navbar from '../components/Navbar';
-import Cover from '../components/Cover';
 import Footer from '../components/Footer';
 import Spinner from "../components/Spinner";
 import ListUserBlogs from "../components/listUserBlogs";
