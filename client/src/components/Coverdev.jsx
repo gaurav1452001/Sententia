@@ -62,13 +62,13 @@ const Coverdev = () => {
   }, [avatarImage]);
 
   return (
-    <div className='border border-gray-800 w-full min-h-[150px] sm:min-h-[200px] flex flex-col justify-center items-center relative rounded-lg dark:bg-gray-800'>
+    <div className='border border-gray-800 w-full min-h-[200px] flex flex-col justify-center items-center relative rounded-lg dark:bg-gray-800'>
       <UploadImg type="image" setProgress={setProgress} setData={setCoverImage}>
-        <div className='w-full h-full min-h-[150px] sm:min-h-[200px] cursor-pointer'>
+        <div className='w-full h-full min-h-[200px] cursor-pointer'>
           {userData?.coverimg ? (<img
             src={userData?.coverimg}
             alt="Cover Image"
-            className='w-full h-[150px] sm:h-[200px] object-cover rounded-lg'
+            className='w-full h-[200px] object-cover rounded-lg'
           />) : (<p className='flex text-center text-gray-500 '>Select a Cover Image</p>)}
 
         </div>

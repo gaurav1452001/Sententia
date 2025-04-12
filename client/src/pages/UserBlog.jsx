@@ -56,16 +56,6 @@ const UserBlog = () => {
     );
   }
 
-  const stats = {
-    subscribers: 1234,
-    notifications: 5,
-    views: 8547,
-    stats: {
-      words: 45678,
-      sentences: 2345,
-      posts: 23
-    }
-  };
   return (
     <div>
       <Navbar />
@@ -75,30 +65,6 @@ const UserBlog = () => {
         </div>
         
         <Coverdev />
-
-        {/* Overview Section */}
-        <div className="w-full mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-10">
-          <div className="bg-zinc-900 p-6 rounded-xl border border-zinc-800">
-            <h3 className="text-gray-400 text-sm">Total Subscribers</h3>
-            <p className="text-3xl font-bold text-white mt-2">{stats.subscribers}</p>
-          </div>
-          <div className="bg-zinc-900 p-6 rounded-xl border border-zinc-800">
-            <h3 className="text-gray-400 text-sm">Notifications</h3>
-            <p className="text-3xl font-bold text-white mt-2">{stats.notifications}</p>
-          </div>
-          <div className="bg-zinc-900 p-6 rounded-xl border border-zinc-800">
-            <h3 className="text-gray-400 text-sm">30 Day Views</h3>
-            <p className="text-3xl font-bold text-white mt-2">{stats.views}</p>
-          </div>
-          <div className="bg-zinc-900 p-6 rounded-xl border border-zinc-800">
-            <h3 className="text-gray-400 text-sm">Writing Stats</h3>
-            <div className="mt-2 space-y-1">
-              <p className="text-sm text-gray-400">Words: <span className="text-white">{stats.stats.words}</span></p>
-              <p className="text-sm text-gray-400">Sentences: <span className="text-white">{stats.stats.sentences}</span></p>
-              <p className="text-sm text-gray-400">Posts: <span className="text-white">{stats.stats.posts}</span></p>
-            </div>
-          </div>
-        </div>
 
       </div>
 

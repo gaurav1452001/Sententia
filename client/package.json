@@ -29,6 +29,7 @@
     "react-dropzone": "^14.3.8",
     "react-infinite-scroll-component": "^6.1.0",
     "react-quill": "^2.0.0",
+    "react-responsive-masonry": "^2.7.1",
     "react-router-dom": "^7.1.1",
     "react-spinners": "^0.15.0",
     "react-toastify": "^11.0.2",

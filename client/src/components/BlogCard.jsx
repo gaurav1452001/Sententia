@@ -1,36 +1,37 @@
-import React from 'react'
-import { format } from "timeago.js";
+import React from 'react';
 import placeholderimg from "../assets/sample_blog_img.png";
+
 const BlogCard = ({ post }) => {
   return (
-    <>
-      <div className='w-[60%] border-[0px] mx-auto'>
-      </div>
-      <div className=' hover:bg-[#18181B] m-3 py-2 flex-col mx-auto sm:w-2/3 md:w-[60%] cursor-pointer'>
-        <div className='flex flex-row mx-2 items-center'>
-          <img src={post.user.profileimg} alt="" className='h-7 w-7 rounded-full object-cover object-center' />
-          <p className='mx-4 font-semibold'>{post.user.blogName}</p>
-          <p className='text-xs text-[#999999]'>{format(post.createdAt)}</p>
-        </div>
-        <div className='m-3 flex flex-row justify-between'>
-          <div className='flex flex-col justify-between py-2'>
-            <div className='flex flex-col gap-8'>
-              <div className='font-bold text-xl'>{post.title}</div>
-              <p>{post.desc}</p>
-            </div>
-            <div className='flex flex-row gap-4'>
-            <p className='text-xs'>{post.user?.username || 'Anonymous'}</p>
-            </div>
-          </div>
-          <div>
-            <img src={post.img||placeholderimg} alt="stock image" className='h-48 w-64 object-cover rounded-lg' />
-          </div>
-        </div>
-      </div>
-      <div className='w-[60%] border-[1px] border-[#2d2f30] mx-auto'>
-      </div>
-    </>
-  )
-}
+    <div className="group relative w-full overflow-hidden rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
+      {/* Background Image with dim effect */}
+      <img 
+        src={post.img || placeholderimg} 
+        alt="blog cover" 
+        className="w-full h-auto object-cover rounded-lg brightness-75 group-hover:brightness-50 transition-all duration-300"
+      />
 
-export default BlogCard
+      {/* Overlay Content */}
+      <div className="absolute inset-0 flex flex-col justify-end p-4">
+        {/* Title and Author - Always visible */}
+        <div className="space-y-3">
+          <h2 className="text-white font-bold text-3xl line-clamp-2">
+            {post.title}
+          </h2>
+          <p className="text-gray-300 text-sm">
+            {post.user.blogName}
+          </p>
+        </div>
+
+        {/* Description - Shown on hover */}
+        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-2">
+          <p className="text-gray-200 text-xs line-clamp-3">
+            {post.desc}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default BlogCard;
