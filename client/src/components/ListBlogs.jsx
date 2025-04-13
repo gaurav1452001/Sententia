@@ -9,7 +9,7 @@ import Spinner from "./Spinner";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 const fetchPosts = async (pageParam) => {
   const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts`, {
-    params: { page: pageParam, limit: 3 }
+    params: { page: pageParam, limit: 12 }
   });
   console.log(res.data);
   return res.data;
@@ -42,7 +42,7 @@ const ListBlogs = () => {
   const { isSearched, searchFilter, setSearchFilter, blogs } = useContext(AppContext);
   return (
     <>
-      <div className="mt-20">
+      <div className="mt-20 px-7 xl:px-14">
         <InfiniteScroll
           dataLength={allPosts.length}
           next={fetchNextPage}

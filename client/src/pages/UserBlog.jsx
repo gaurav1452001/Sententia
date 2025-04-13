@@ -68,7 +68,7 @@ const UserBlog = () => {
 
       </div>
 
-      <h2 className="w-[60%] mx-auto mt-10 text-2xl font-bold text-white mb-6">Your Blog Posts</h2>
+      <h2 className="w-[60%] mx-auto  mt-14 text-2xl font-bold text-white mb-6">Your Blog Posts</h2>
       <div className='w-[60%] border-[1px] border-[#2d2f30] mx-auto'>
       </div>
       <ListUserBlogs />

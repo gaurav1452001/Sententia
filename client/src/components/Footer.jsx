@@ -48,21 +48,7 @@ const Footer = () => {
                   </li>
                 </ul>
               </div>
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-white">Legal</h3>
-                <ul  className="mt-6 space-y-4">
-                  <li>
-                    <a href="#" className="text-sm leading-6 text-gray-400 hover:text-white">
-                      Privacy
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-sm leading-6 text-gray-400 hover:text-white">
-                      Terms
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              
             </div>
           </div>
         </div>
