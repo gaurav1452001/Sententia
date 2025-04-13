@@ -63,12 +63,12 @@ const UserBlog = () => {
         <div className='text-xl p-6'>
           {userData?.blogName || "Untitled Blog"}
         </div>
-        
         <Coverdev />
-
       </div>
-
-      <h2 className="w-[60%] mx-auto  mt-14 text-2xl font-bold text-white mb-6">Your Blog Posts</h2>
+      
+      <div className="flex justify-center mt-16 text-2xl font-bold text-white mb-6">
+        Your Blog Posts
+      </div>
       <div className='w-[60%] border-[1px] border-[#2d2f30] mx-auto'>
       </div>
       <ListUserBlogs />

@@ -118,7 +118,7 @@ const ReadBlog = () => {
           <div className='flex flex-row mt-6 sm:mt-9 gap-3 sm:gap-5 text-base sm:text-lg'>
             <img 
               src={data.user.profileimg} 
-              className='w-8 h-8 sm:w-9 md:w-12 sm:h-9 md:h-12 rounded-md' 
+              className='w-8 h-8 sm:w-9 md:w-14 sm:h-9 md:h-12 rounded-md' 
               alt="" 
             />
             <div className='flex flex-col'>
