@@ -27,7 +27,7 @@ const ListUserBlogs = () => {
 
     const posts = postsData?.posts || [];
     return (
-        <div className='mt-5 px-4 sm:px-8 md:px-7 lg:px-24 xl:px-48'>
+        <div className='mt-5 px-4 sm:px-8 md:px-7 lg:px-24 xl:px-36'>
             <ResponsiveMasonry
                 columnsCountBreakPoints={{ 100:1, 350: 2, 730: 3, 900: 3}}
                 gutterBreakpoints={{ 350: "12px", 750: "16px", 900: "24px" }}
@@ -35,7 +35,7 @@ const ListUserBlogs = () => {
                 <Masonry>
                     {posts.map(post => (
                         <NavLink key={post._id} to={`/blogs/${post.slug}`}>
-                            <BlogCard post={post} />
+                            <BlogCard post={post} showDelete={true}/>
                         </NavLink>
                     ))}
                 </Masonry>

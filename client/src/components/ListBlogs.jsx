@@ -62,7 +62,7 @@ const ListBlogs = () => {
             <Masonry>
               {allPosts.map(post => (
                 <NavLink to={`/blogs/${post.slug}`}>
-                  <BlogCard key={post._id} post={post} />
+                  <BlogCard key={post._id} post={post} showDelete={false}/>
                 </NavLink>
               ))}
             </Masonry>
