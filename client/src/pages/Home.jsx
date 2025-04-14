@@ -5,11 +5,10 @@ import ListBlogs from '../components/ListBlogs'
 import { BackgroundBeams } from "../components/ui/background-beams";
 const Home = () => {
   return (
-    <div className='min-h-screen '>
+    <div className=''>
       <Navbar/>
       <Search/>
       <ListBlogs/>
-      <BackgroundBeams/>
     </div>
   )
 }

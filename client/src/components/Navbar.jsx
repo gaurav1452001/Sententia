@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import logo from "../assets/logo_nobg.png";
 import { SignedIn, SignedOut, UserButton, useAuth, useClerk } from "@clerk/clerk-react";
 import { NavLink } from 'react-router-dom';
+import { AlignJustify } from "lucide-react";
 
 const Navbar = () => {
     const { openSignIn } = useClerk();
@@ -36,9 +37,7 @@ const Navbar = () => {
 
                 <div className="flex items-center gap-4">
                     <button onClick={toggleMenu} className="text-white focus:outline-none sm:hidden">
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
+                        <AlignJustify />
                     </button>
                     <SignedOut>
                         <button
@@ -55,11 +54,17 @@ const Navbar = () => {
             </div>
 
             {isMenuOpen && (
-                <div className="bg-black w-full fixed top-16 left-0 z-40 sm:hidden"> {/* Adjusted for small screens */}
-                    <ul className="flex flex-col items-center gap-4 py-4">
+                <div className="bg-[#141616] w-full fixed top-14 left-0 z-40 sm:hidden"> {/* Adjusted for small screens */}
+                    <ul className="flex flex-col items-center gap-3 py-4">
                         <NavLink to='/' onClick={toggleMenu}><li>HOME</li></NavLink>
+                        <div className='w-[60%] border-[1px] border-[#2d2f30] mx-auto'>
+                        </div>
                         <NavLink to='/write-blog' onClick={toggleMenu}><li>POST</li></NavLink>
+                        <div className='w-[60%] border-[1px] border-[#2d2f30] mx-auto'>
+                        </div>
                         <NavLink to='/user-blog' onClick={toggleMenu}><li>MY BLOG</li></NavLink>
+                        <div className='w-[60%] border-[1px] border-[#2d2f30] mx-auto'>
+                        </div>
                         <NavLink to='/stats' onClick={toggleMenu}><li>STATS</li></NavLink>
                     </ul>
                 </div>
