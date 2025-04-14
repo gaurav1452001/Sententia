@@ -2,13 +2,13 @@ import React from 'react';
 import placeholderimg from "../assets/sample_blog_img.png";
 import { Trash2, Share } from 'lucide-react';
 
-const BlogCard = ({ post, showDelete }) => {
+const BlogCard = ({ post, showDelete, modelContext }) => {
 
   const handleDelete = (e) => {
     // this worked because of putting css z-50 on the delete icon
-    e.preventDefault();//
+    e.preventDefault();// Prevent the default action of the event
     e.stopPropagation(); // Prevent the click event from bubbling up to the parent NavLink
-  
+    modelContext(true); // Call the function to show the modal
   }
 
   return (
@@ -17,7 +17,7 @@ const BlogCard = ({ post, showDelete }) => {
       <img
         src={post.img || placeholderimg}
         alt="blog cover"
-        className="w-full h-auto object-cover rounded-lg brightness-[0.7] group-hover:brightness-[0.3] transition-all duration-300 "
+        className="w-full h-auto object-cover rounded-lg brightness-[0.7] group-hover:brightness-[0.3] transition-all duration-300"
       />
 
       {showDelete ? (

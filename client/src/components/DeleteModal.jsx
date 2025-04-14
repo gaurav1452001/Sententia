@@ -1,37 +1,36 @@
-import React from 'react';
+import React, { useRef } from 'react'
+import {X} from 'lucide-react'
+const DeleteModal = ({modelContext}) => {
 
-const DeleteModal = ({ isOpen, onClose, onDelete}) => {
-  if (!isOpen) return null;
-
+  const modalRef = useRef(null);
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-      <div className="bg-white dark:bg-zinc-900 rounded-lg p-6 w-[90%] max-w-md">
-        <div className="flex flex-col gap-4">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-            Delete Post
-          </h2>
-          <p className="text-gray-500 dark:text-gray-400">
-            Are you sure you want to delete? This action cannot be undone.
-          </p>
+    <div>
+        <div ref={modalRef} onClick={() => modelContext(false)} className="fixed inset-0 flex items-center justify-center bg-black backdrop-blur-sm bg-opacity-50 z-50">
           
-          <div className="flex justify-end gap-3 mt-4">
-            <button
-              onClick={onClose}
-              className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-zinc-800 rounded-lg transition-colors"
-            >
-              Cancel
+          <div className="bg-[#141616] rounded-lg shadow-lg px-6 py-4 w-96 flex flex-col">
+            <button className='place-self-end'>
+              <X size={20}  onClick={() => modelContext(false)} />
             </button>
-            <button
-              onClick={onDelete}
-              className="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-lg transition-colors"
-            >
-              Delete
-            </button>
+            <h2 className="text-lg font-semibold text-white mb-4">Confirm Deletion</h2>
+            <p className="text-gray-400 mb-6">Are you sure you want to delete this Blog Post? This action cannot be undone.</p>
+            <div className="flex justify-end space-x-4">
+              <button
+                className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400"
+                onClick={() => modelContext(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="px-4 py-2 bg-violet-900 text-white rounded hover:bg-violet-950"
+                onClick={() => console.log('Delete clicked')}
+              >
+                Delete
+              </button>
+            </div>
           </div>
         </div>
-      </div>
     </div>
-  );
-};
+  )
+}
 
-export default DeleteModal;
+export default DeleteModal  

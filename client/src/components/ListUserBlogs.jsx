@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useUser } from '@clerk/clerk-react';
 import BlogCard from "./BlogCard";
-import { NavLink ,Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+import DeleteModal from './DeleteModal';
 
 const fetchPosts = async (userId) => {
     const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts/users/${userId}`);
@@ -13,7 +14,7 @@ const fetchPosts = async (userId) => {
 
 const ListUserBlogs = () => {
     const { user } = useUser();
-
+    const [showModal, setShowModal] = useState(false);
     const {
         data: postsData,
     } = useQuery({
@@ -35,11 +36,12 @@ const ListUserBlogs = () => {
                 <Masonry>
                     {posts.map(post => (
                         <Link key={post._id} to={`/blogs/${post.slug}`}>
-                            <BlogCard post={post} showDelete={true} />
+                            <BlogCard post={post} showDelete={true} modelContext={setShowModal}  />
                         </Link>
                     ))}
                 </Masonry>
             </ResponsiveMasonry>
+            {showModal&&<DeleteModal modelContext={setShowModal}/>}
         </div>
     )
 }
