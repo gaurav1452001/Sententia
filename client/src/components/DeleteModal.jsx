@@ -11,7 +11,7 @@ const DeleteModal = ({modalContext,deleteConfirm}) => {
             <button className='place-self-end'>
               <X size={20}  onClick={() => modalContext(false)} />
             </button>
-            <h2 className="text-lg font-semibold text-white mb-4">Confirm Deletion</h2>
+            <h2 className="text-lg font-semibold text-white mb-4">Confirm Delete</h2>
             <p className="text-gray-400 mb-6">Are you sure you want to delete this Blog Post? This action cannot be undone.</p>
             <div className="flex justify-end space-x-4">
               <button

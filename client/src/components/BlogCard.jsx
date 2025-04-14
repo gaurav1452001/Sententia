@@ -1,8 +1,8 @@
 import React from 'react';
-import placeholderimg from "../assets/sample_blog_img.png";
+import {placeImage1,placeImage2,placeImage3,placeImage4,placeImage5,placeImage6} from '../assets/index';
 import { Trash2, Share } from 'lucide-react';
 
-const BlogCard = ({ post, showDelete, modalContext, currPost}) => {
+const BlogCard = ({ post, showDelete, modalContext, currPost }) => {
   const handleDelete = (e) => {
     // this worked because of putting css z-50 on the delete icon
     e.preventDefault();// Prevent the default action of the event
@@ -10,12 +10,21 @@ const BlogCard = ({ post, showDelete, modalContext, currPost}) => {
     modalContext(true); // Call the function to show the modal
     currPost(post); // Set the current post to be deleted
   }
+  const chooseImage = () => {
+    const images = [placeImage1,
+      placeImage2,
+      placeImage3,
+      placeImage4,
+      placeImage5,
+      placeImage6]; // Placeholder images
+    return images[Math.floor(Math.random() * images.length)];
+  }
 
   return (
     <div className="p-2 group relative w-full overflow-hidden rounded-2xl shadow-md transition-transform duration-300 hover:scale-105">
       {/* Background Image with dim effect */}
       <img
-        src={post.img || placeholderimg}
+        src={post.img || chooseImage()}
         alt="blog cover"
         className="w-full h-auto object-cover rounded-lg brightness-[0.7] group-hover:brightness-[0.3] transition-all duration-300"
       />
@@ -23,7 +32,7 @@ const BlogCard = ({ post, showDelete, modalContext, currPost}) => {
       {showDelete ? (
         <div className='absolute top-3 right-3 flex flex-col gap-3 p-2 items-center'>
           <Trash2 onClick={handleDelete} className='opacity-50 h-6 hover:opacity-100 bg-black rounded-full p-1 z-50' />
-          <Share className='opacity-50 h-6 hover:opacity-100 bg-black rounded-full p-1 z-50' />
+          <Share onClick={handleDelete} className='opacity-50 h-6 hover:opacity-100 bg-black rounded-full p-1 z-50' />
         </div>
       ) : (
         <div className='opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute top-3 right-3'>
