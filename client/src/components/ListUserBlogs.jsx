@@ -1,7 +1,7 @@
 import React from 'react';
 import { useUser } from '@clerk/clerk-react';
 import BlogCard from "./BlogCard";
-import { NavLink } from "react-router-dom";
+import { NavLink ,Link} from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
@@ -27,16 +27,16 @@ const ListUserBlogs = () => {
 
     const posts = postsData?.posts || [];
     return (
-        <div className='mt-5 px-4 sm:px-8 md:px-7 lg:px-24 xl:px-36'>
+        <div className='mt-5 px-4 sm:px-8 md:px-7 lg:px-24 xl:px-40'>
             <ResponsiveMasonry
-                columnsCountBreakPoints={{ 100:1, 350: 2, 730: 3, 900: 3}}
+                columnsCountBreakPoints={{ 100: 1, 350: 2, 730: 3, 900: 3 }}
                 gutterBreakpoints={{ 350: "12px", 750: "16px", 900: "24px" }}
             >
                 <Masonry>
                     {posts.map(post => (
-                        <NavLink key={post._id} to={`/blogs/${post.slug}`}>
-                            <BlogCard post={post} showDelete={true}/>
-                        </NavLink>
+                        <Link key={post._id} to={`/blogs/${post.slug}`}>
+                            <BlogCard post={post} showDelete={true} />
+                        </Link>
                     ))}
                 </Masonry>
             </ResponsiveMasonry>

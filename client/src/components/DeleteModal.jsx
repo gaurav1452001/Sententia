@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DeleteModal = ({ isOpen, onClose, onDelete, title }) => {
+const DeleteModal = ({ isOpen, onClose, onDelete}) => {
   if (!isOpen) return null;
 
   return (
@@ -11,7 +11,7 @@ const DeleteModal = ({ isOpen, onClose, onDelete, title }) => {
             Delete Post
           </h2>
           <p className="text-gray-500 dark:text-gray-400">
-            Are you sure you want to delete "{title}"? This action cannot be undone.
+            Are you sure you want to delete? This action cannot be undone.
           </p>
           
           <div className="flex justify-end gap-3 mt-4">
