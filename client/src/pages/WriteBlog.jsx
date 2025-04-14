@@ -10,7 +10,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import "./WriteBlog.css";
 import { useAuth } from "@clerk/clerk-react";
-import { toast } from 'react-toastify';
+import { toast, Flip } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
 import UploadImg from "../components/UploadImg";
 import ImageResize from "quill-image-resize-module-react";
@@ -32,7 +32,12 @@ const WriteBlog = () => {
       });
     },
     onSuccess: (res) => {
-      toast.success("Blog Post Created");
+      toast.success("Blog Post Created", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        theme: "dark",
+        transition: Flip,
+    });
 
       navigate(`/blogs/${res.data.slug}`);
     }
@@ -153,7 +158,6 @@ const WriteBlog = () => {
       content: content,
     };
     
-    console.log(data);
     mutation.mutate(data);
   };
 

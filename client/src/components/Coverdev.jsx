@@ -3,7 +3,7 @@ import UploadImg from "./UploadImg";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAuth, useUser } from '@clerk/clerk-react';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { toast, Flip } from "react-toastify";
 import no_user from "../assets/nouser.png";
 
 const fetchUserData = async (clerkId, token) => {
@@ -33,7 +33,12 @@ const Coverdev = () => {
       });
     },
     onSuccess: (res) => {
-      toast.success("Profile Updated");
+      toast.success("Profile Updated", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        theme: "dark",
+        transition: Flip,
+    });
     }
   });
   const { getToken } = useAuth();

@@ -2,13 +2,13 @@ import React from 'react';
 import placeholderimg from "../assets/sample_blog_img.png";
 import { Trash2, Share } from 'lucide-react';
 
-const BlogCard = ({ post, showDelete, modelContext }) => {
-
+const BlogCard = ({ post, showDelete, modalContext, currPost}) => {
   const handleDelete = (e) => {
     // this worked because of putting css z-50 on the delete icon
     e.preventDefault();// Prevent the default action of the event
-    e.stopPropagation(); // Prevent the click event from bubbling up to the parent NavLink
-    modelContext(true); // Call the function to show the modal
+    e.stopPropagation(); // Prevent the click event from bubbling up to the parent Link
+    modalContext(true); // Call the function to show the modal
+    currPost(post); // Set the current post to be deleted
   }
 
   return (

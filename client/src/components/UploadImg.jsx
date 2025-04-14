@@ -1,6 +1,6 @@
 import { IKContext, IKUpload } from 'imagekitio-react';
 import React, { useRef } from 'react';
-import { toast } from "react-toastify";
+import { toast, Flip } from "react-toastify";
 
 const authenticator = async () => {
     try {
@@ -24,12 +24,22 @@ const UploadImg = ({ children, type, setProgress, setData }) => {
     const ref = useRef(null);
 
     const onError = (err) => {
-        toast.error("Image Upload Failed");
+        toast.error("Image Upload Failed", {
+            autoClose: 2000,
+            hideProgressBar: true,
+            theme: "dark",
+            transition: Flip,
+        });
     };
     const onSuccess = (res) => {
         console.log(res);
         setData(res);
-        toast.success("Image Added");
+        toast.success("Image Added", {
+            autoClose: 2000,
+            hideProgressBar: true,
+            theme: "dark",
+            transition: Flip,
+        });
     };
 
     const onUploadProgress = (progress) => {

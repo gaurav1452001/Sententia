@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { AppContext } from "../context/AppContext";
 import BlogCard from "./BlogCard";
 import { NavLink } from "react-router-dom";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
@@ -7,11 +6,11 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
 import Spinner from "./Spinner";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
+
 const fetchPosts = async (pageParam) => {
   const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts`, {
     params: { page: pageParam, limit: 12 }
   });
-  console.log(res.data);
   return res.data;
 };
 
@@ -22,8 +21,6 @@ const ListBlogs = () => {
     fetchNextPage,
     hasNextPage,
     isFetching,
-    isFetchingNextPage,
-    status,
   } = useInfiniteQuery({
     queryKey: ['posts'],
     queryFn: ({ pageParam = 1 }) => fetchPosts(pageParam),
@@ -31,15 +28,12 @@ const ListBlogs = () => {
     initialPageParam: 1,
     getNextPageParam: (lastPage, pages) => lastPage.hasMore ? pages.length + 1 : undefined,
   })
-  console.log(data);
 
   if (isFetching) { <Spinner /> }
 
   if (error) { return "Something went wrong!" }
 
-  console.log(data);
   const allPosts = data?.pages?.flatMap(page => page.posts) || [];
-  const { isSearched, searchFilter, setSearchFilter, blogs } = useContext(AppContext);
   return (
     <>
       <div className="mt-20 px-7 xl:px-14">
