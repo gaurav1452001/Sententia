@@ -5,11 +5,14 @@ import ReadBlog from './pages/ReadBlog'
 import WriteBlog from './pages/WriteBlog'
 import UserBlog from './pages/UserBlog'
 import Stats from './pages/Stats'
+import ListBlogs from './components/ListBlogs'
+
 const App = () => {
   return (
     <div>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/blogs' element={<ListBlogs />} />
         <Route path='/write-blog' element={<WriteBlog />} />
         <Route path='/user-blog' element={<UserBlog />} />
         <Route path='/stats' element={<Stats />} />

@@ -66,18 +66,16 @@ const ReadBlog = () => {
   }
 
   return (
-    <div> 
+    <div>
       <Navbar />
       {/* Responsive container margins */}
-      <div className='mt-16 sm:mt-20 md:mt-28 mx-4 sm:mx-8 md:mx-44'>
+      <div className='mt-16 sm:mt-20 md:mt-28 mx-4 sm:mx-12 lg:mx-44 border border-white '>
         {/* Dynamic Sidebar - Responsive visibility and positioning */}
-        <aside className="fixed left-0 z-40 w-48 sm:w-64 ml-2 sm:ml-8 md:ml-24 
-          transition-transform -translate-x-full sm:translate-x-0 
-          hidden md:block" aria-label="Sidebar">
-          <div className="h-full overflow-y-auto p-2 sm:p-3">
-            <ul className="space-y-1 text-xs sm:text-sm flex flex-col">
+        <aside className="fixed left-0 z-40 w-48 ml-2 sm:ml-8 md:ml-24 hidden lg:block" >
+          <div className="p-2 sm:p-3">
+            <ul className="space-y-2 text-xs sm:text-sm flex flex-col">
               {headings.map((heading) => (
-                <li key={heading.id}>
+                <li key={heading.id} className='line-clamp-2'>
                   <a
                     href={`#${heading.id}`}
                     className="flex items-center p-1 sm:p-2 hover:text-zinc-300 text-[#999999]"
@@ -91,10 +89,10 @@ const ReadBlog = () => {
         </aside>
 
         {/* Blog Content - Responsive spacing and typography */}
-        <div className="px-2 sm:pl-4 pt-3 flex flex-col sm:ml-24 md:ml-36">
+        <div className={headings.length?"px-2 lg:pl-4 pt-3 flex flex-col lg:ml-44":"px-2 lg:pl-4 pt-3 flex flex-col"}>
           {/* Back button - Responsive text size */}
-          <a href="/" className='text-[#CCCCCC] text-sm sm:text-base'>← BACK TO HOME PAGE</a>
-          
+          <a href="/" className='text-[#CCCCCC] text-sm sm:text-base hover:text-white'>← BACK TO HOME PAGE</a>
+
           {/* Date - Responsive spacing and text */}
           <span className='text-[#999999] mt-4 sm:mt-7 text-xs sm:text-sm'>
             {new Date(data.createdAt).toLocaleDateString('en-US', {
@@ -103,23 +101,23 @@ const ReadBlog = () => {
               year: 'numeric',
             }).toUpperCase()}
           </span>
-          
+
           {/* Title - Responsive text size */}
           <div className='text-2xl sm:text-4xl md:text-6xl font-semibold mt-2 sm:mt-3'>
             {data.title}
           </div>
-          
+
           {/* Description - Responsive text and spacing */}
           <div className='text-[#B3B3B3] text-sm sm:text-base mt-4 sm:mt-7'>
             {data.desc}
           </div>
-          
+
           {/* Author info - Responsive layout and sizing */}
           <div className='flex flex-row mt-6 sm:mt-9 gap-3 sm:gap-5 text-base sm:text-lg'>
-            <img 
-              src={data.user.profileimg} 
-              className='w-8 h-8 sm:w-9 md:w-14 sm:h-9 md:h-12 rounded-md' 
-              alt="" 
+            <img
+              src={data.user.profileimg}
+              className='w-8 h-8 sm:w-9 md:w-14 sm:h-9 md:h-12 rounded-md'
+              alt=""
             />
             <div className='flex flex-col'>
               <span className='text-[#CCCCCC] text-sm sm:text-base'>
@@ -130,13 +128,13 @@ const ReadBlog = () => {
               </span>
             </div>
           </div>
-          
+
           {/* Divider - Responsive spacing */}
           <hr className="h-px my-6 sm:my-8 bg-neutral-800 border-0"></hr>
-          
+
           {/* Blog content */}
           <div
-            className="quill-content text-gray-200"
+            className="quill-content text-gray-200 break-words"
             dangerouslySetInnerHTML={sanitizedData(data.content)}
           />
         </div>

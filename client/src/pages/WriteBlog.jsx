@@ -177,8 +177,35 @@ const WriteBlog = () => {
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-5" id="my-form">
           <UploadImg type="image" setProgress={setProgress} setData={setCover}>
-            <div className="text-center bg-white text-black p-2 mt-16 sm:my-2 w-40 border rounded-xl font-semibold disabled:cursor-not-allowed disabled:bg-gray-500">
-              Add Cover Image
+            <div className="group relative overflow-hidden rounded-2xl border-2 border-dashed border-purple-500/20 hover:border-purple-500/50 transition-all duration-300 backdrop-blur-sm">
+              {cover.url ? (
+                <div className="aspect-[16/9] w-full relative">
+                  <img src={cover.url} alt="Cover" className="w-full h-full object-cover rounded-xl" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+                    <span className="text-white text-sm font-medium px-4 py-2 bg-black/40 rounded-lg backdrop-blur-sm">
+                      Change Cover Image
+                    </span>
+                  </div>
+                </div>
+              ) : (
+                <div className="aspect-[16/9] w-full flex flex-col items-center justify-center gap-3 py-12 bg-gray-900/60">
+                  <div className="p-3 rounded-full bg-purple-500/10 text-purple-400">
+                    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <p className="text-gray-300 font-medium">Add Cover Image</p>
+                  <p className="text-gray-500 text-sm">Recommended: 1600x900px</p>
+                </div>
+              )}
+              {progress > 0 && progress < 100 && (
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-800">
+                  <div 
+                    className="h-full bg-purple-500 transition-all duration-300"
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+              )}
             </div>
           </UploadImg>
           <input
@@ -186,15 +213,19 @@ const WriteBlog = () => {
             placeholder="Title"
             className="w-full border rounded-lg p-4 my-2 bg-black text-5xl font-semibold"
             value={title}
+            maxLength={70}
             onChange={(e) => setTitle(e.target.value)}
           />
+          <p>{title.length}/{70}</p>
           <input
             type="text"
             placeholder="Add a Description"
             className="w-full border rounded-lg p-4 my-2 bg-black"
             value={desc}
+            maxLength={160}
             onChange={(e) => setDesc(e.target.value)}
           />
+          <p>{desc.length}/{160}</p>
           <div className="min-h-[600px] mb-4">
             <ReactQuill
               ref={quillRef}

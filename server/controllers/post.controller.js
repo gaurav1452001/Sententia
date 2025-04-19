@@ -6,16 +6,42 @@ export const getPosts = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 2;
 
-    const posts = await Post.find()
-    .populate("user")
-    .limit(limit)
-    .skip((page - 1) * limit)
-    .sort({ createdAt: -1 });
+    const query = {}
+    const author = req.query.author;
+    const searchQuery = req.query.search;
+    const sortQuery = req.query.sort;
 
-    const totalPosts=await Post.countDocuments();
-    const hasMore=page*limit<totalPosts;
-    
-    res.status(200).json({posts, hasMore});
+    if (searchQuery) {
+        query.title = { $regex: searchQuery, $options: "i" };
+    }
+    if (author) {
+        const user = await User.findOne({ username: author }).select("_id");
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        query.user = user._id;
+    }
+    let sortObj = { createdAt: -1 };
+    if (sortQuery) {
+        if (sortQuery === "oldest") {
+            sortObj = { createdAt: 1 };
+        } else if (sortQuery === "newest") {
+            sortObj = { createdAt: -1 };
+        } else if (sortQuery === "popular") {
+            sortObj = { visit: -1 };
+        }
+    }
+
+    const posts = await Post.find(query)
+        .populate("user")
+        .limit(limit)
+        .skip((page - 1) * limit)
+        .sort(sortObj);
+
+    const totalPosts = await Post.countDocuments();
+    const hasMore = page * limit < totalPosts;
+
+    res.status(200).json({ posts, hasMore });
 };
 
 export const getPost = async (req, res) => {
@@ -86,7 +112,7 @@ export const uploadAuth = async (req, res) => {
     const imagekit = new ImageKit({
         urlEndpoint: process.env.IK_URL_ENDPOINT,
         publicKey: process.env.IK_PUBLIC_KEY,
-        privateKey: process.env.IK_PRIVATE_KEY, 
+        privateKey: process.env.IK_PRIVATE_KEY,
     });
     const result = imagekit.getAuthenticationParameters();
     res.send(result);

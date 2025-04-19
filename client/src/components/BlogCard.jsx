@@ -1,6 +1,7 @@
-import React from 'react';
-import {placeImage1,placeImage2,placeImage3,placeImage4,placeImage5,placeImage6} from '../assets/index';
+import React, { useMemo } from 'react';
+import { placeImage1, placeImage2, placeImage3, placeImage4, placeImage5, placeImage6 } from '../assets/index';
 import { Trash2, Share } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const BlogCard = ({ post, showDelete, modalContext, currPost }) => {
   const handleDelete = (e) => {
@@ -10,7 +11,7 @@ const BlogCard = ({ post, showDelete, modalContext, currPost }) => {
     modalContext(true); // Call the function to show the modal
     currPost(post); // Set the current post to be deleted
   }
-  const chooseImage = () => {
+  const chooseImage = useMemo(() => {
     const images = [placeImage1,
       placeImage2,
       placeImage3,
@@ -18,13 +19,13 @@ const BlogCard = ({ post, showDelete, modalContext, currPost }) => {
       placeImage5,
       placeImage6]; // Placeholder images
     return images[Math.floor(Math.random() * images.length)];
-  }
+  }, []); // Empty dependency array means this will only run once when component mounts
 
   return (
     <div className="p-2 group relative w-full overflow-hidden rounded-2xl shadow-md transition-transform duration-300 hover:scale-105">
       {/* Background Image with dim effect */}
       <img
-        src={post.img || chooseImage()}
+        src={post.img || chooseImage}
         alt="blog cover"
         className="w-full h-auto object-cover rounded-lg brightness-[0.7] group-hover:brightness-[0.3] transition-all duration-300"
       />
@@ -32,11 +33,13 @@ const BlogCard = ({ post, showDelete, modalContext, currPost }) => {
       {showDelete ? (
         <div className='absolute top-3 right-3 flex flex-col gap-3 p-2 items-center'>
           <Trash2 onClick={handleDelete} className='opacity-50 h-6 hover:opacity-100 bg-black rounded-full p-1 z-50' />
-          <Share onClick={handleDelete} className='opacity-50 h-6 hover:opacity-100 bg-black rounded-full p-1 z-50' />
+          {/* <Share onClick={handleDelete} className='opacity-50 h-6 hover:opacity-100 bg-black rounded-full p-1 z-50' /> */}
         </div>
       ) : (
-        <div className='opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute top-3 right-3'>
-          <img src={post.user.profileimg} alt="" className='h-9 w-9 rounded-full object-cover object-center' />
+        <div className='opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute top-3 right-3 z-50'>
+          <Link to={`/blogs?author=${post.user.username}`}>
+            <img src={post.user.profileimg} alt="" className='h-9 w-9 rounded-full object-cover object-center' />
+          </Link>
         </div>
       )}
       {/* Overlay Content */}
