@@ -6,7 +6,7 @@ import WriteBlog from './pages/WriteBlog'
 import UserBlog from './pages/UserBlog'
 import Stats from './pages/Stats'
 import ListBlogs from './components/ListBlogs'
-
+import AuthorBlog from './pages/AuthorBlog'
 const App = () => {
   return (
     <div>
@@ -17,6 +17,8 @@ const App = () => {
         <Route path='/user-blog' element={<UserBlog />} />
         <Route path='/stats' element={<Stats />} />
         <Route path='/blogs/:slug' element={<ReadBlog />} />
+        <Route path='/users/:user' element={<AuthorBlog />} />
+        
       </Routes>
     </div>
   )

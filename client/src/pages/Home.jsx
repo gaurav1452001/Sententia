@@ -7,6 +7,7 @@ const Home = () => {
     <div className=''>
       <Navbar/>
       <Search/>
+      
       <ListBlogs/>
     </div>
   )
