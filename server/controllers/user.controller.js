@@ -3,21 +3,7 @@ import User from '../models/user.js';
 export const getUser = async (req, res) => {
     try {
         const { clerkUserId } = req.params;
-        const requestingUserId = req.auth.userId;
-        
-        if (!clerkUserId) {
-            return res.status(400).json({ message: "Clerk User ID is required" });
-        }
-
-        // Verify that the requesting user matches the requested profile
-        if (clerkUserId !== requestingUserId) {
-            return res.status(403).json({ 
-                message: "Unauthorized: You can only view your own profile" 
-            });
-        }
-
         const user = await User.findOne({ clerkUserId });
-        
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }

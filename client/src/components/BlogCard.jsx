@@ -22,7 +22,7 @@ const BlogCard = ({ post, showDelete, modalContext, currPost }) => {
   }, []); // Empty dependency array means this will only run once when component mounts
 
   return (
-    <div className="p-2 group relative w-full overflow-hidden rounded-2xl shadow-md transition-transform duration-300 hover:scale-105">
+    <div className="p-2 group relative w-full overflow-hidden rounded-2xl shadow-md transition-transform duration-300 hover:scale-[1.02]">
       {/* Background Image with dim effect */}
       <img
         src={post.img || chooseImage}
@@ -37,26 +37,26 @@ const BlogCard = ({ post, showDelete, modalContext, currPost }) => {
         </div>
       ) : (
         <div className='opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute top-3 right-3 z-50'>
-          <Link to={`/blogs?author=${post.user.username}`}>
+          <Link to={`/blogs?author=${post.user.clerkUserId}`}>
             <img src={post.user.profileimg} alt="" className='h-9 w-9 rounded-full object-cover object-center' />
           </Link>
         </div>
       )}
       {/* Overlay Content */}
-      <div className="xl:gap-9 absolute inset-0 flex flex-col justify-end p-4 mb-6">
-        <div className="text-white font-bold text-xl sm:text-2xl xl:text-3xl line-clamp-2">
+      <div className="right-3 left-3 bottom-3 absolute flex flex-col justify-end">
+        <p className="text-white font-bold text-base sm:text-xl xl:text-2xl line-clamp-1">
           {post.title}
-        </div>
-        <div className="text-gray-200 line-clamp-1 xl:line-clamp-2 text-xs sm:text-sm xl:text-semibold ">
+        </p>
+        <p className="text-gray-200 line-clamp-1 xl:line-clamp-2 text-[10px] sm:text-sm xl:text-semibold ">
           {post.desc}
-        </div>
+        </p>
+        <p className="text-gray-300 text-[7px] sm:text-[10px] xl:text-xs flex flex-row items-center gap-2">
+          {post.user.blogName}
+        </p>
       </div>
 
-      <p className="absolute bottom-4 left-4 text-gray-300 text-xs sm:text-xs xl:text-[10px] flex flex-row items-center gap-2">
-        <div>
-          {post.user.blogName}
-        </div>
-      </p>
+      {/* <p className="absolute bottom-4 left-4 text-gray-300 text-[7px] sm:text-xs xl:text-[10px] flex flex-row items-center gap-2">
+      </p> */}
 
       <p className="absolute bottom-3 right-3 text-gray-300 text-sm sm:text-xs xl:text-[10px] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         {(() => {

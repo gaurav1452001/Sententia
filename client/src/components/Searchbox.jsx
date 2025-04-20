@@ -22,9 +22,9 @@ const Searchbox = () => {
     <div className="relative w-full max-w-sm">
       <input 
         type="text" 
-        placeholder='Search...' 
+        placeholder='Search Sententia...' 
         className='w-full h-10 rounded-lg bg-[#141616] text-gray-200 pl-10 pr-4 
-          border border-violet-950 
+          border border-[#2d2f30]
           focus:outline-none focus:ring-1 focus:ring-violet-600'
           onKeyDown={handleKeyPress} 
       />

@@ -7,6 +7,7 @@ import axios from "axios";
 import Spinner from "./Spinner";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 import SortButtons from "./SortButtons";
+import SearchUser from "./SearchUser";
 
 const fetchPosts = async (pageParam, searchParams) => {
   const searchParamsObj = Object.fromEntries([...searchParams]);
@@ -42,7 +43,10 @@ const ListBlogs = () => {
   return (
     <>
       <div className="mt-20 px-7 xl:px-14">
-        <SortButtons/>
+        <SearchUser />
+        <div className='w-[99%] border-[1px] border-[#2d2f30] mx-auto'>
+        </div>
+        <SortButtons />
         <InfiniteScroll
           dataLength={allPosts.length}
           next={fetchNextPage}
@@ -54,7 +58,6 @@ const ListBlogs = () => {
             </div>
           }
         >
-
           <ResponsiveMasonry
             columnsCountBreakPoints={{ 350: 1, 470: 2, 900: 3, 1250: 4 }}
             gutterBreakpoints={{ 350: "12px", 750: "16px", 900: "24px" }}

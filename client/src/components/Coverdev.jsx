@@ -67,20 +67,20 @@ const Coverdev = () => {
   }, [avatarImage]);
 
   return (
-    <div className='border border-gray-800 w-full min-h-[200px] flex flex-col justify-center items-center relative rounded-lg dark:bg-gray-800'>
+    <div className='w-full min-h-[200px] flex flex-col justify-center items-center relative rounded-lg'>
       <UploadImg type="image" setProgress={setProgress} setData={setCoverImage}>
-        <div className='w-full h-full min-h-[200px] cursor-pointer'>
+        <div className='w-full h-full min-h-[200px] cursor-pointer bg-[#111111] rounded-lg hover:bg-[#141414] hover:border border-[#232323] transition-all duration-200'>
           {userData?.coverimg ? (<img
             src={userData?.coverimg}
             alt="Cover Image"
             className='w-full h-[200px] object-cover rounded-lg'
-          />) : (<p className='flex text-center text-gray-500 '>Select a Cover Image</p>)}
+          />) : (<p className='absolute text-center text-gray-500 font-semibold hover:text-gray-300 w-full bottom-[50%]    transition-all duration-300 text-lg'>Select a Cover Image</p>)}
 
         </div>
       </UploadImg>
 
       <UploadImg type="image" setProgress={setProgress} setData={setAvatarImage}>
-        <section className='absolute bottom-[-27%] sm:bottom-[-20%] rounded-full w-20 h-20 sm:w-24 sm:h-24 p-1 ring-2 ring-gray-300 dark:ring-gray-500 flex justify-center items-center z-10 bg-gray-600 cursor-pointer'>
+        <section className='absolute bottom-[-27%] sm:bottom-[-20%] rounded-full w-20 h-20 sm:w-24 sm:h-24 p-1 ring-2 ring-gray-300 dark:ring-gray-500 flex justify-center items-center z-10 bg-gray-600 cursor-pointer hover:scale-110 transition-all duration-300'>
           {userData?.profileimg ? 
             (<img
               src={userData?.profileimg}

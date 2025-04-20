@@ -15,7 +15,7 @@ export const getPosts = async (req, res) => {
         query.title = { $regex: searchQuery, $options: "i" };
     }
     if (author) {
-        const user = await User.findOne({ username: author }).select("_id");
+        const user = await User.findOne({ clerkUserId: author }).select("_id");
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
