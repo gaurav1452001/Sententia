@@ -12,11 +12,7 @@ const SortButtons = () => {
   const currentSort = searchParams.get('sort');
 
   const handleSort = (value) => {
-    if (currentSort === value) {
-      searchParams.delete('sort');
-    } else {
-      searchParams.set('sort', value);
-    }
+    searchParams.set('sort', value);
     setSearchParams(searchParams);
   };
 
