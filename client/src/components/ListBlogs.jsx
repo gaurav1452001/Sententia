@@ -8,6 +8,7 @@ import Spinner from "./Spinner";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 import SortButtons from "./SortButtons";
 import SearchUser from "./SearchUser";
+import SearchResults from "./SearchResults";
 
 const fetchPosts = async (pageParam, searchParams) => {
   const searchParamsObj = Object.fromEntries([...searchParams]);
@@ -43,6 +44,7 @@ const ListBlogs = () => {
   return (
     <>
       <div className="mt-20 px-7 xl:px-14">
+        <SearchResults/>
         <SearchUser />
         <div className='w-[99%] border-[1px] border-[#2d2f30] mx-auto'>
         </div>
