@@ -58,7 +58,6 @@ const UserBlog = () => {
 
   return (
     <div>
-      <Navbar />
       <div className='mt-16 mx-auto flex flex-col items-center justify-center w-11/12 sm:w-3/4'>
         <div className='text-xl p-6'>
           {userData?.blogName || "Untitled Blog"}

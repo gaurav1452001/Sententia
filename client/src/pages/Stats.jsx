@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const Stats = () => {
@@ -33,7 +32,6 @@ const Stats = () => {
 
   return (
     <div>
-      <Navbar/>
       <div className="mx-auto px-4 sm:px-8 md:px-16 lg:px-24 xl:px-60 py-8 mt-16">
         {/* User Stats Section */}
         <div className="mb-12">

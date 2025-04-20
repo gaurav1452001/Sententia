@@ -3,7 +3,6 @@ import { Quill } from "react-quill";
 import ReactQuill from "react-quill";
 import ReactDOM from "react-dom";
 import "react-quill/dist/quill.snow.css";
-import Navbar from "../components/Navbar";
 import DateObject from "react-date-object";
 import Footer from '../components/Footer';
 import { useMutation } from "@tanstack/react-query";
@@ -163,8 +162,6 @@ const WriteBlog = () => {
 
   return (
     <div>
-      <Navbar />
-
       <div className="w-[98%] sm:w-2/3 sm:mt-24 mx-auto my-5 px-5">
         <div className="flex justify-end">
           <button disabled={mutation.isPending || (progress > 0 && progress < 100)} type="submit" form="my-form" className="bg-white text-black p-2 mt-16 sm:my-2 w-40 border rounded-xl font-semibold disabled:cursor-not-allowed disabled:bg-gray-500">

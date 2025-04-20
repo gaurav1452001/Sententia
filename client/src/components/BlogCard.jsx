@@ -11,21 +11,12 @@ const BlogCard = ({ post, showDelete, modalContext, currPost }) => {
     modalContext(true); // Call the function to show the modal
     currPost(post); // Set the current post to be deleted
   }
-  const chooseImage = useMemo(() => {
-    const images = [placeImage1,
-      placeImage2,
-      placeImage3,
-      placeImage4,
-      placeImage5,
-      placeImage6]; // Placeholder images
-    return images[Math.floor(Math.random() * images.length)];
-  }, []); // Empty dependency array means this will only run once when component mounts
 
   return (
     <div className="p-2 group relative w-full overflow-hidden rounded-2xl shadow-md transition-transform duration-300 hover:scale-[1.02]">
       {/* Background Image with dim effect */}
       <img
-        src={post.img || chooseImage}
+        src={post.img || placeImage4}
         alt="blog cover"
         className="w-full h-auto object-cover rounded-lg brightness-[0.7] group-hover:brightness-[0.3] transition-all duration-300"
       />
@@ -58,7 +49,7 @@ const BlogCard = ({ post, showDelete, modalContext, currPost }) => {
       {/* <p className="absolute bottom-4 left-4 text-gray-300 text-[7px] sm:text-xs xl:text-[10px] flex flex-row items-center gap-2">
       </p> */}
 
-      <p className="absolute bottom-3 right-3 text-gray-300 text-sm sm:text-xs xl:text-[10px] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <p className="absolute bottom-3 right-3 text-gray-300 text-[10px] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         {(() => {
           const date = new Date(post.createdAt);
           const currentYear = new Date().getFullYear();

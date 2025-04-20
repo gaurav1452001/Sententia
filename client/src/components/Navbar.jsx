@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../assets/logo_nobg.png";
+import logo from "../assets/new_logo2.png";
 import { SignedIn, SignedOut, UserButton, useAuth, useClerk } from "@clerk/clerk-react";
 import { NavLink } from 'react-router-dom';
 import { AlignJustify } from "lucide-react";
@@ -23,7 +23,7 @@ const Navbar = () => {
         <div className="flex justify-center "> {/* Adjusted top margin */}
             <div className="backdrop-filter backdrop-blur-lg bg-opacity-30 bg-[#0f1111] flex justify-between p-1 px-6 items-center fixed w-[100%] sm:py-1 shadow-md shadow-zinc-800 border border-zinc-800 z-50"> {/* Adjusted width and padding */}
                 <div className="flex flex-row items-center gap-4 sm:gap-20"> {/* Adjusted gap for small screens */}
-                    <div className="w-32 invert">
+                    <div className="w-12 invert">
                         <NavLink to='/'><img src={logo} alt="logo" /></NavLink>
                     </div>
 

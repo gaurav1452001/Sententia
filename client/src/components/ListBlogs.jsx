@@ -46,7 +46,7 @@ const ListBlogs = () => {
       <div className="mt-20 px-7 xl:px-14">
         <SearchResults/>
         <SearchUser />
-        <div className='w-[99%] border-[1px] border-[#2d2f30] mx-auto'>
+        <div className='w-[99%] border-[1px] border-[#363637] mx-auto'>
         </div>
         <SortButtons />
         <InfiniteScroll

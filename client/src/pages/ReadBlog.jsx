@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -67,7 +66,6 @@ const ReadBlog = () => {
 
   return (
     <div>
-      <Navbar />
       {/* Responsive container margins */}
       <div className='mt-16 sm:mt-20 md:mt-28 mx-4 sm:mx-12 lg:mx-44 border border-white '>
         {/* Dynamic Sidebar - Responsive visibility and positioning */}

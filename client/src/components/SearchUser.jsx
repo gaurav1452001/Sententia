@@ -39,7 +39,7 @@ const SearchUser = () => {
     return (
         <>
             {currAuthor ? (
-                <div className='border border-gray-800 w-full min-h-[150px] sm:min-h-[200px] flex flex-col justify-center items-center relative rounded-lg dark:bg-gray-800 mb-32'>
+                <div className='border border-gray-800 w-full min-h-[150px] sm:min-h-[200px] flex flex-col justify-center items-center relative rounded-lg dark:bg-gray-800 mb-32 mt-36'>
                     <div className=' left-3 absolute top-[-25%] text-3xl font-bold'>
                         {userData?.blogName || "Untitled Blog"}
                     </div>

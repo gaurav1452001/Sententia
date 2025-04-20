@@ -17,14 +17,14 @@ const SortButtons = () => {
   };
 
   return (
-    <div className=" flex gap-3 ml-2 items-center mb-4 mt-6">
+    <div className="flex gap-3 ml-2 items-center mb-4 mt-6">
       {sortOptions.map(({ label, value }) => (
         <button
           key={value}
-          className={`px-3 py-2 font-semibold rounded-lg transition-colors duration-200 text-sm ${
+          className={`px-3 py-2 font-semibold rounded-lg  text-sm ${
             currentSort === value
-              ? 'bg-[#dddddd] text-black ring-2 ring-violet-900'
-              : 'bg-[#232524] text-[#6e6e6e] hover:bg-[#3a3a3a] hover:text-[#dedede]'
+              ? 'bg-violet-100 text-violet-900 ring-2 ring-violet-500'
+              : 'bg-gray-700/60 text-gray-300 hover:bg-gray-600 hover:text-white'
           }`}
           onClick={() => handleSort(value)}
         >

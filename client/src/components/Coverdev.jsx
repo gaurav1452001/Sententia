@@ -80,7 +80,7 @@ const Coverdev = () => {
       </UploadImg>
 
       <UploadImg type="image" setProgress={setProgress} setData={setAvatarImage}>
-        <section className='absolute bottom-[-27%] sm:bottom-[-20%] rounded-full w-20 h-20 sm:w-24 sm:h-24 p-1 ring-2 ring-gray-300 dark:ring-gray-500 flex justify-center items-center z-10 bg-gray-600 cursor-pointer hover:scale-110 transition-all duration-300'>
+        <section className='absolute bottom-[-27%] sm:bottom-[-20%] rounded-full w-20 h-20 sm:w-24 sm:h-24 p-1 flex justify-center items-center z-10 bg-gray-800 cursor-pointer hover:scale-110 transition-all duration-300'>
           {userData?.profileimg ? 
             (<img
               src={userData?.profileimg}

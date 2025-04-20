@@ -7,9 +7,11 @@ import UserBlog from './pages/UserBlog'
 import Stats from './pages/Stats'
 import ListBlogs from './components/ListBlogs'
 import AuthorBlog from './pages/AuthorBlog'
+import Navbar from './components/Navbar'
 const App = () => {
   return (
     <div>
+      <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/blogs' element={<ListBlogs />} />
