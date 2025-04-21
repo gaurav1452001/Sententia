@@ -57,9 +57,9 @@ const UserBlog = () => {
   }
 
   return (
-    <div>
-      <div className='mt-16 mx-auto flex flex-col items-center justify-center w-11/12 sm:w-3/4'>
-        <div className='text-xl p-6'>
+    <div className='min-h-screen bg-gradient-to-b from-gray-950 to-gray-900'>
+      <div className='pt-16 mx-auto flex flex-col items-center justify-center w-11/12 sm:w-3/4'>
+        <div className='text-2xl font-bold p-6'>
           {userData?.blogName || "Untitled Blog"}
         </div>
         <Coverdev />

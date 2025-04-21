@@ -1,6 +1,6 @@
 import React, { useContext, useRef } from 'react'
 import logo from "../assets/logo_nobg.png";
-const Search = () => {
+const HeroSec = () => {
 
   return (
     <div className='pt-20'>
@@ -8,9 +8,9 @@ const Search = () => {
         <img 
           src={logo} 
           alt="Sententia Logo" 
-          className="w-64 md:w-72 lg:w-80 invert" // Added responsive width and invert for white color
+          className="w-64 md:w-72 lg:w-80 invert"
         />
-        <p className='text-2xl font-semibold'>
+        <p className='text-2xl font-bold bg-gradient-to-r from-violet-500 via-violet-400 to-violet-300 text-transparent bg-clip-text'>
           Draft the Writer Inside You
         </p>
       </div>
@@ -18,4 +18,4 @@ const Search = () => {
   )
 }
 
-export default Search
+export default HeroSec

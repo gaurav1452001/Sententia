@@ -161,22 +161,35 @@ const WriteBlog = () => {
   };
 
   return (
-    <div>
-      <div className="w-[98%] sm:w-2/3 sm:mt-24 mx-auto my-5 px-5">
-        <div className="flex justify-end">
-          <button disabled={mutation.isPending || (progress > 0 && progress < 100)} type="submit" form="my-form" className="bg-white text-black p-2 mt-16 sm:my-2 w-40 border rounded-xl font-semibold disabled:cursor-not-allowed disabled:bg-gray-500">
-            {mutation.isPending ? "Loading..." : "Create Post"}
+    <div className="min-h-screen bg-gradient-to-b from-black to-gray-900">
+      <div className="max-w-4xl mx-auto pt-20 pb-12 px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center mb-8">
+          <div className="text-gray-400 text-sm font-medium">
+            {date.format("dddd DD MMMM")}
+          </div>
+          <button 
+            disabled={mutation.isPending || (progress > 0 && progress < 100)} 
+            type="submit" 
+            form="my-form" 
+            className="inline-flex items-center px-6 py-2.5 rounded-xl text-sm transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50 bg-violet-800 hover:bg-violet-600 text-white font-semibold"
+          >
+            {mutation.isPending ? (
+              <>
+                <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Publishing...
+              </>
+            ) : "Publish Post"}
           </button>
         </div>
 
-        <div className="p-2 flex justify-end">
-          {date.format("dddd DD MMMM")}
-        </div>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-5" id="my-form">
+        <form onSubmit={handleSubmit} className="space-y-6" id="my-form">
           <UploadImg type="image" setProgress={setProgress} setData={setCover}>
-            <div className="group relative overflow-hidden rounded-2xl border-2 border-dashed border-purple-500/20 hover:border-purple-500/50 transition-all duration-300 backdrop-blur-sm">
+            <div className="group relative overflow-hidden rounded-2xl border-2 border-dashed border-violet-500/20 hover:border-violet-500/50 transition-all duration-300 backdrop-blur-sm cursor-pointer">
               {cover.url ? (
-                <div className="aspect-[16/9] w-full relative">
+                <div className="aspect-[16/6] w-full relative">
                   <img src={cover.url} alt="Cover" className="w-full h-full object-cover rounded-xl" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
                     <span className="text-white text-sm font-medium px-4 py-2 bg-black/40 rounded-lg backdrop-blur-sm">
@@ -185,45 +198,58 @@ const WriteBlog = () => {
                   </div>
                 </div>
               ) : (
-                <div className="aspect-[16/9] w-full flex flex-col items-center justify-center gap-3 py-12 bg-gray-900/60">
-                  <div className="p-3 rounded-full bg-purple-500/10 text-purple-400">
+                <div className="aspect-[16/6] w-full flex flex-col items-center justify-center gap-3 py-12 bg-gray-900/60">
+                  <div className="p-3 rounded-full bg-violet-500/10 text-violet-400">
                     <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                   </div>
                   <p className="text-gray-300 font-medium">Add Cover Image</p>
-                  <p className="text-gray-500 text-sm">Recommended: 1600x900px</p>
+                  <p className="text-gray-500 text-sm">Recommended: 1600x600px</p>
                 </div>
               )}
               {progress > 0 && progress < 100 && (
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-800">
                   <div 
-                    className="h-full bg-purple-500 transition-all duration-300"
+                    className="h-full bg-violet-500 transition-all duration-300"
                     style={{ width: `${progress}%` }}
                   />
                 </div>
               )}
             </div>
           </UploadImg>
-          <input
-            type="text"
-            placeholder="Title"
-            className="w-full border rounded-lg p-4 my-2 bg-black text-5xl font-semibold"
-            value={title}
-            maxLength={70}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <p>{title.length}/{70}</p>
-          <input
-            type="text"
-            placeholder="Add a Description"
-            className="w-full border rounded-lg p-4 my-2 bg-black"
-            value={desc}
-            maxLength={160}
-            onChange={(e) => setDesc(e.target.value)}
-          />
-          <p>{desc.length}/{160}</p>
-          <div className="min-h-[600px] mb-4">
+
+          <div className="space-y-4">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Title"
+                className="w-full px-4 pr-12 py-3 text-4xl font-bold bg-transparent  text-white placeholder-gray-500"
+                value={title}
+                maxLength={70}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <span className="absolute right-2 bottom-3 text-gray-500 text-xs">
+                {title.length}/70
+              </span>
+            </div>
+            
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Add a Short Description for Your Post"
+                className="w-full px-4 pr-12 py-3 text-lg bg-transparent  text-gray-300 placeholder-gray-500"
+                value={desc}
+                maxLength={160}
+                onChange={(e) => setDesc(e.target.value)}
+              />
+              <span className="absolute right-1 bottom-2 text-gray-500 text-xs">
+                {desc.length}/160
+              </span>
+            </div>
+          </div>
+
+          <div className="min-h-[600px] bg-black/30 rounded-lg backdrop-blur-sm border border-gray-800">
             <ReactQuill
               ref={quillRef}
               theme="snow"
@@ -231,7 +257,7 @@ const WriteBlog = () => {
               onChange={setContent}
               modules={modules}
               formats={formats}
-              placeholder={"Start Composing..."}
+              placeholder="Start Writing..."
               className="quill-editor"
             />
           </div>

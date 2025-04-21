@@ -69,7 +69,7 @@ const Coverdev = () => {
   return (
     <div className='w-full min-h-[200px] flex flex-col justify-center items-center relative rounded-lg'>
       <UploadImg type="image" setProgress={setProgress} setData={setCoverImage}>
-        <div className='w-full h-full min-h-[200px] cursor-pointer bg-[#111111] rounded-lg hover:bg-[#141414] hover:border border-[#232323] transition-all duration-200'>
+        <div className='w-full h-full min-h-[200px] cursor-pointer bg-[#111111] border-2 border-gray-800 rounded-lg hover:bg-[#141414]  transition-all duration-200'>
           {userData?.coverimg ? (<img
             src={userData?.coverimg}
             alt="Cover Image"

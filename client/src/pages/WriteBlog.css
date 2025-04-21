@@ -1,13 +1,42 @@
 /* WriteBlog.css */
 .quill-editor {
-    height: 100%;
-  }
-  
-  .quill-editor .ql-container {
-    height: calc(100% - 42px); /* 42px is the height of the toolbar */
-  }
-  
-  .quill-editor .ql-editor {
-    min-height: 900px;
-    max-height: none;
-  }
+  height: 100%;
+}
+
+.quill-editor .ql-container {
+  height: calc(100% - 42px);
+  border: none;
+  font-family: ui-sans-serif, system-ui;
+}
+
+.quill-editor .ql-toolbar {
+  border: none;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.quill-editor .ql-editor {
+  min-height: 900px;
+  max-height: none;
+  color: rgb(209 213 219);
+}
+
+.quill-editor .ql-editor.ql-blank::before {
+  color: rgb(107 114 128);
+  font-style: normal;
+}
+.quill-editor .ql-snow .ql-stroke {
+  stroke: rgb(156 163 175);
+}
+
+.quill-editor .ql-snow .ql-fill {
+  fill: rgb(156 163 175);
+}
+
+.quill-editor .ql-snow .ql-picker {
+  color: rgb(156 163 175);
+}
+
+.quill-editor .ql-snow .ql-picker-options {
+  background-color: rgb(17 24 39);
+
+}
