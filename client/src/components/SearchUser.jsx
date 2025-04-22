@@ -51,7 +51,7 @@ const SearchUser = () => {
                         />
 
                     </div>
-                    <section className='absolute left-1 bottom-[-27%] sm:bottom-[-20%] rounded-full w-20 h-20 sm:w-24 sm:h-24 p-1 ring-2 ring-gray-300 dark:ring-gray-500 flex justify-center items-center z-10 bg-violet-950'>
+                    <section className='absolute left-1 bottom-[-27%] sm:bottom-[-20%] rounded-full w-20 h-20 sm:w-24 sm:h-24 p-1 ring-2 ring-gray-300 dark:ring-gray-500 flex justify-center items-center z-10'>
                         {userData?.profileimg ?
                             (<img
                                 src={userData?.profileimg}

@@ -38,7 +38,7 @@ const Coverdev = () => {
         hideProgressBar: true,
         theme: "dark",
         transition: Flip,
-    });
+      });
     }
   });
   const { getToken } = useAuth();
@@ -75,22 +75,22 @@ const Coverdev = () => {
             alt="Cover Image"
             className='w-full h-[200px] object-cover rounded-lg'
           />) : (<p className='absolute text-center text-gray-500 font-semibold hover:text-gray-300 w-full bottom-[50%]    transition-all duration-300 text-lg'>Select a Cover Image</p>)}
-
         </div>
       </UploadImg>
 
       <UploadImg type="image" setProgress={setProgress} setData={setAvatarImage}>
         <section className='absolute bottom-[-27%] sm:bottom-[-20%] rounded-full w-20 h-20 sm:w-24 sm:h-24 p-1 flex justify-center items-center z-10 bg-gray-800 cursor-pointer hover:scale-110 transition-all duration-300'>
-          {userData?.profileimg ? 
+          {userData?.profileimg ?
             (<img
               src={userData?.profileimg}
               alt="Profile Image"
               className='w-full h-full object-cover rounded-full'
-            />) : 
+            />) :
             (<img src={no_user} alt="Avatar" />
-          )}
+            )}
         </section>
       </UploadImg>
+      
     </div>
   )
 }

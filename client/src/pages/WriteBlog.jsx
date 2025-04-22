@@ -161,7 +161,7 @@ const WriteBlog = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black to-gray-900">
+    <div className="min-h-screen bg-gradient-to-b from-[#080808] to-gray-900">
       <div className="max-w-4xl mx-auto pt-20 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-8">
           <div className="text-gray-400 text-sm font-medium">
