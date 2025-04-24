@@ -150,9 +150,36 @@ const WriteBlog = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Check for empty title
+    if (!title.trim()) {
+      toast.error("Title cannot be empty", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: "dark",
+        transition: Flip,
+      });
+      return;
+    }
+
+    // Check for empty content
+    if (!content.trim() || content === '<p><br></p>') {
+      toast.error("Blog Content cannot be empty", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: "dark",
+        transition: Flip,
+      });
+      return;
+    }
+
     const data = {
       title: title,
-      img:cover.url||"",
+      img: cover.url || "",
       desc: desc,
       content: content,
     };
