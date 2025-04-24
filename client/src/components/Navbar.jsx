@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import logo from "../assets/new_logo2.png";
 import { SignedIn, SignedOut, UserButton, useAuth, useClerk } from "@clerk/clerk-react";
 import { NavLink } from 'react-router-dom';
@@ -10,9 +10,6 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { getToken } = useAuth()
 
-    useEffect(() => {
-        getToken().then(token => console.log(token));
-    }, []);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);

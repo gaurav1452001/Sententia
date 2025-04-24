@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React from 'react'
 import logo from "../assets/logo_nobg.png";
 const HeroSec = () => {
 

@@ -22,7 +22,7 @@ const EditModal = ({ modalContext, userData, updateConfirm }) => {
 
   return (
     <div>
-      <div ref={modalRef} onClick={() => modalContext(false)} className="fixed inset-0 flex items-center justify-center bg-black backdrop-blur-sm bg-opacity-50 z-50">
+      <div ref={modalRef} onClick={() => modalContext(false)} className="fixed inset-0 flex items-center justify-center bg-black backdrop-blur-sm bg-opacity-50 z-[51]">
         <div className="bg-[#141616] rounded-lg shadow-lg px-6 py-4 w-96 flex flex-col" onClick={e => e.stopPropagation()}>
           <button className='place-self-end'>
             <X size={20} onClick={() => modalContext(false)} />

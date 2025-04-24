@@ -1,6 +1,5 @@
 import User from "../models/user.js";
 import Post from "../models/post.js";
-import Comment from "../models/comment.js";
 import { Webhook } from "svix";
 
 export const clerkWebhooks = async (req, res) => {
@@ -46,7 +45,6 @@ export const clerkWebhooks = async (req, res) => {
             }
 
             await Post.deleteMany({ user: deletedUser._id });
-            await Comment.deleteMany({ user: deletedUser._id });
         }
 
         // Send a success response after processing the event

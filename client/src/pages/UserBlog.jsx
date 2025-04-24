@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useUser, useAuth } from '@clerk/clerk-react';
-import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Spinner from "../components/Spinner";
 import ListUserBlogs from "../components/listUserBlogs";
@@ -85,7 +84,7 @@ const UserBlog = () => {
     return (
       <div>
         <div className="flex justify-center items-center h-screen">
-          <p className="text-xl text-gray-400">Log in or Create an Account</p>
+          <p className="text-xl text-gray-400 font-overpass">Log in or Create an Account</p>
         </div>
         <Footer />
       </div>
@@ -103,7 +102,7 @@ const UserBlog = () => {
           {userData?.username||""}
           <button 
             onClick={() => setShowEditModal(true)}
-            className='bg-gray-800/70 hover:bg-gray-700/70 text-gray-200 text-sm font-normal py-[4px] px-[12px] rounded-lg transition-all duration-300'
+            className='bg-gray-800/70 hover:bg-gray-700/70 text-gray-200 text-sm font-normal py-[3px] px-[12px] pt-[5px] rounded-lg transition-all duration-300'
           >
             Edit Profile
           </button>

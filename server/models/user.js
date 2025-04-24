@@ -26,10 +26,6 @@ const userSchema = new Schema({
     coverimg: {
         type: String,
     },
-    savedPosts: {
-        type: [String],
-        default: [],
-    },
 }, { timestamps: true })
 
 export default mongoose.model("User", userSchema);

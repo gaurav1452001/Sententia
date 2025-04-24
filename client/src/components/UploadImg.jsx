@@ -32,7 +32,6 @@ const UploadImg = ({ children, type, setProgress, setData }) => {
         });
     };
     const onSuccess = (res) => {
-        console.log(res);
         setData(res);
         toast.success("Image Added", {
             autoClose: 2000,

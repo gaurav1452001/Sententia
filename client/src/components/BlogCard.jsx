@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { placeImage1, placeImage2, placeImage3, placeImage4, placeImage5, placeImage6 } from '../assets/index';
 import { Trash2, Share } from 'lucide-react';
 import { Link } from 'react-router-dom';

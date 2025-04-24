@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ReactDOM from "react-dom";
 import Footer from '../components/Footer';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';

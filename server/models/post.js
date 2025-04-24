@@ -27,22 +27,9 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    readTime: {
-        type: String
-    },
-    views: {
+    visit: {
         type: Number,
         default: 0
-    },
-    likes: {
-        type: Number,
-        default: 0
-    },
-    wordCount: {
-        type: Number,
-    },
-    sentenceCount: {
-        type: Number,
     }
 }, { timestamps: true });
 

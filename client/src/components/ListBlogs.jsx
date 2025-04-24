@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import BlogCard from "./BlogCard";
 import { NavLink, useSearchParams } from "react-router-dom";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
