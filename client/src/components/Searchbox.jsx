@@ -19,7 +19,7 @@ const Searchbox = () => {
   }
 
   return (
-    <div className="relative w-full max-w-sm">
+    <div className="relative w-full max-w-sm font-serif">
       <input 
         type="text" 
         placeholder='Search Sententia...' 

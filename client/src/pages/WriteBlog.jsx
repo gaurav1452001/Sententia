@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import "./WriteBlog.css";
-import { useAuth } from "@clerk/clerk-react";
+import { useAuth, useUser } from "@clerk/clerk-react";
 import { toast, Flip } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
 import UploadImg from "../components/UploadImg";
@@ -19,6 +19,7 @@ Quill.register("modules/imageResize", ImageResize);
 const WriteBlog = () => {
   const navigate = useNavigate();
   const { getToken } = useAuth();
+  const { isLoaded, isSignedIn } = useUser();
   const quillRef = useRef(null);
 
   const mutation = useMutation({
@@ -151,6 +152,18 @@ const WriteBlog = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!isSignedIn) {
+      toast.error("You must be logged in to publish a post", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: "dark",
+        transition: Flip,
+      });
+      return;
+    }
+
     // Check for empty title
     if (!title.trim()) {
       toast.error("Title cannot be empty", {
@@ -191,14 +204,14 @@ const WriteBlog = () => {
     <div className="min-h-screen">
       <div className="max-w-4xl mx-auto pt-20 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-8">
-          <div className="text-gray-400 text-sm font-medium">
+          <div className="text-gray-400 text-sm font-medium font-overpass">
             {date.format("dddd DD MMMM")}
           </div>
           <button 
             disabled={mutation.isPending || (progress > 0 && progress < 100)} 
             type="submit" 
             form="my-form" 
-            className="inline-flex items-center px-6 py-2.5 rounded-xl text-sm transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50 bg-violet-800 hover:bg-violet-600 text-white font-semibold"
+            className="font-overpass inline-flex items-center px-6 py-2 pt-3 rounded-xl text-sm transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50 bg-violet-800 hover:bg-violet-600 text-white font-semibold"
           >
             {mutation.isPending ? (
               <>
@@ -231,8 +244,8 @@ const WriteBlog = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                   </div>
-                  <p className="text-gray-300 font-medium">Add Cover Image</p>
-                  <p className="text-gray-500 text-sm">Recommended: 1600x600px</p>
+                  <p className="text-gray-300 font-medium font-overpass">Add Cover Image</p>
+                  <p className="text-gray-500 text-sm font-overpass">Recommended: 1600x600px</p>
                 </div>
               )}
               {progress > 0 && progress < 100 && (
@@ -251,7 +264,7 @@ const WriteBlog = () => {
               <input
                 type="text"
                 placeholder="Title"
-                className="w-full px-4 pr-12 py-3 text-4xl font-bold bg-transparent  text-white placeholder-gray-500"
+                className="pt-4 font-overpass w-full px-4 pr-12 py-3 text-4xl font-bold bg-transparent  text-white placeholder-gray-500"
                 value={title}
                 maxLength={70}
                 onChange={(e) => setTitle(e.target.value)}
@@ -265,7 +278,7 @@ const WriteBlog = () => {
               <input
                 type="text"
                 placeholder="Add a Short Description for Your Post"
-                className="w-full px-4 pr-12 py-3 text-lg bg-transparent  text-gray-300 placeholder-gray-500"
+                className="font-overpass w-full px-4 pr-12 py-3 text-lg bg-transparent  text-gray-300 placeholder-gray-500"
                 value={desc}
                 maxLength={160}
                 onChange={(e) => setDesc(e.target.value)}

@@ -28,11 +28,10 @@ const Navbar = () => {
                     </div>
 
                     <div className="hidden lg:flex"> {/* Hidden on small screens */}
-                        <ul className="flex gap-4 sm:gap-20 font-semibold"> {/* Adjusted gap for small screens */}
+                        <ul className="flex gap-4 sm:gap-20 font-semibold font-overpass"> {/* Adjusted gap for small screens */}
                             <NavLink to='/' className={({ isActive }) => isActive ? "text-violet-500" : "text-[#CCCCCC] hover:text-white"}><li>HOME</li></NavLink>
                             <NavLink to='/write-blog' className={({ isActive }) => isActive ? "text-violet-500" : "text-[#CCCCCC] hover:text-white"}><li>POST</li></NavLink>
                             <NavLink to='/user-blog' className={({ isActive }) => isActive ? "text-violet-500" : "text-[#CCCCCC] hover:text-white"}><li>MY BLOG</li></NavLink>
-                            <NavLink to='/stats' className={({ isActive }) => isActive ? "text-violet-500" : "text-[#CCCCCC] hover:text-white"}><li>STATS</li></NavLink>
                         </ul>
                     </div>
                 </div>
@@ -46,7 +45,7 @@ const Navbar = () => {
                         <SignedOut>
                             <button
                                 onClick={(e) => openSignIn()}
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                                className="bg-violet-900 hover:bg-violet-800 text-white text-sm font-semibold py-2 px-4 rounded-xl"
                             >
                                 Login
                             </button>
@@ -71,7 +70,6 @@ const Navbar = () => {
                         <NavLink to='/user-blog' onClick={toggleMenu}><li>MY BLOG</li></NavLink>
                         <div className='w-[60%] border-[1px] border-[#2d2f30] mx-auto'>
                         </div>
-                        <NavLink to='/stats' onClick={toggleMenu}><li>STATS</li></NavLink>
                     </ul>
                 </div>
             )}

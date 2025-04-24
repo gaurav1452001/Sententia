@@ -87,7 +87,7 @@ const ReadBlog = () => {
         {/* Dynamic Sidebar - Responsive visibility and positioning */}
         {headings.length > 0 && (
 
-        <aside className="bg-gradient-to-r from-[#23233a]/10 to-[#181825]/10
+        <aside className="font-overpass bg-gradient-to-r from-[#23233a]/10 to-[#181825]/10
                rounded noscroll max-h-96 sticky top-36 z-40 w-[17%]  hidden lg:block overflow-y-auto" >
           <div className="p-2 sm:p-3">
             <ul className="space-y-5 text-xs sm:text-sm">
@@ -102,12 +102,12 @@ const ReadBlog = () => {
         )}
 
         {/* Blog Content - Responsive spacing and typography */}
-        <div className={headings.length?"lg:w-[83%] w-[100%] px-2 lg:pl-4 pt -3 flex flex-col":"px-2 lg:pl-4 pt-3 flex flex-col"}>
+        <div className={headings.length?"font-overpass lg:w-[83%] w-[100%] px-2 lg:pl-4 pt -3 flex flex-col":"px-2 lg:pl-4 pt-3 flex flex-col"}>
           {/* Back button - Responsive text size */}
           <a href="/" className='text-[#CCCCCC] text-xs sm:text-base hover:text-white'>← BACK TO HOME PAGE</a>
 
           {/* Date - Responsive spacing and text */}
-          <span className='text-[#999999] mt-4 sm:mt-7 text-xs sm:text-sm'>
+          <span className=' text-[#999999] mt-4 sm:mt-7 text-xs sm:text-sm'>
             {new Date(data.createdAt).toLocaleDateString('en-US', {
               day: 'numeric',
               month: 'short',

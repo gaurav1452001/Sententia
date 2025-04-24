@@ -17,11 +17,11 @@ const SortButtons = () => {
   };
 
   return (
-    <div className="flex gap-3 ml-2 items-center mb-4 mt-6">
+    <div className="flex gap-3 ml-2 items-center mb-4 mt-6 font-overpass">
       {sortOptions.map(({ label, value }) => (
         <button
           key={value}
-          className={`px-3 py-2 font-semibold rounded-lg  text-sm ${
+          className={`px-3 py-1 pt-2 font-semibold rounded-lg  text-sm ${
             currentSort === value
               ? 'bg-violet-100 text-violet-900 ring-2 ring-violet-500'
               : 'bg-gray-700/60 text-gray-300 hover:bg-gray-600 hover:text-white'

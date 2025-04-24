@@ -40,7 +40,7 @@ const SearchUser = () => {
         <>
             {currAuthor ? (
                 <div className='border border-gray-800 w-full min-h-[150px] sm:min-h-[200px] flex flex-col justify-center items-center relative rounded-lg dark:bg-gray-800 mb-32 mt-36'>
-                    <div className=' left-3 absolute top-[-25%] text-3xl font-bold'>
+                    <div className='font-bebas left-3 absolute top-[-25%] text-3xl font-bold'>
                         {userData?.blogName || "Untitled Blog"}
                     </div>
                     <div className='w-full h-full min-h-[150px] sm:min-h-[200px] bg-[#161623]'>
@@ -64,7 +64,7 @@ const SearchUser = () => {
 
 
                     </section>
-                    <div className='absolute  bottom-[-60%] text-white text-xl justify-center font-semibold'>
+                    <div className='absolute font-playfair bottom-[-60%] text-white text-xl justify-center font-semibold'>
                         {userData?.username}'s Blog Posts
                     </div>
                 </div>

@@ -8,6 +8,14 @@ module.exports = {
   darkMode: "class",
   theme: {
     // rest of the code
+    extend:{
+      fontFamily:{
+        bebas:["Bebas Neue"],
+        playfair:["Playfair Display"],
+        overpass:["Overpass"],
+
+      }
+    },
   },
   plugins: [addVariablesForColors],
 };

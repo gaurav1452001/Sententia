@@ -38,13 +38,13 @@ const BlogCard = ({ post, showDelete, modalContext, currPost }) => {
       )}
       {/* Overlay Content */}
       <div className="right-3 left-3 bottom-3 absolute flex flex-col justify-end">
-        <p className="text-white font-bold text-base sm:text-xl xl:text-2xl line-clamp-1">
+        <p className="font-overpass text-white font-bold text-base sm:text-xl xl:text-2xl line-clamp-1">
           {post.title}
         </p>
-        <p className="text-gray-200 line-clamp-1 xl:line-clamp-2 text-[10px] sm:text-sm xl:text-semibold ">
+        <p className="text-gray-200 font-overpass line-clamp-1 xl:line-clamp-2 text-[10px] sm:text-sm xl:text-semibold">
           {post.desc}
         </p>
-        <p className="text-gray-300 text-[7px] sm:text-[10px] xl:text-xs flex flex-row items-center gap-2">
+        <p className="text-gray-300 font-overpass italic text-[7px] sm:text-[10px] xl:text-xs flex flex-row items-center gap-2">
           {post.user.blogName}
         </p>
       </div>
