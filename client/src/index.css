@@ -3,11 +3,15 @@
 @tailwind utilities;
 html {
     background-color:#141616;
+    background: linear-gradient(to bottom, #080808,#111827 );
     color:white;
     caret-color:white;
     margin: 0;
     padding: 0;
     
+}
+.noscroll::-webkit-scrollbar {
+  display: none;
 }
 ::selection {
     background-color: #333333;

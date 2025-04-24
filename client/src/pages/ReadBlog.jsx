@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ReactDOM from "react-dom";
 import Footer from '../components/Footer';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -18,12 +19,12 @@ const ReadBlog = () => {
   const { isLoading, error, data } = useQuery({
     queryKey: ["posts", slug],
     queryFn: () => fetchPost(slug),
-    enabled: !!slug, // Ensure the query runs only if the slug exists
+    enabled: !!slug, // Ensuring the query runs only if the slug exists
   });
 
   useEffect(() => {
     if (data?.content) {
-      // Parse the content to extract headings
+      // Parsing the content to extract headings
       const parser = new DOMParser();
       const doc = parser.parseFromString(data.content, 'text/html');
       const extractedHeadings = Array.from(doc.querySelectorAll('h1, h2, h3')).map((heading, index) => ({
@@ -32,7 +33,7 @@ const ReadBlog = () => {
         tag: heading.tagName.toLowerCase(),
       }));
 
-      // Add IDs to headings in the content for scrolling
+      // Adding IDs to headings in the content for scrolling
       extractedHeadings.forEach((heading, index) => {
         const element = doc.querySelectorAll('h1, h2, h3')[index];
         if (element) {
@@ -42,7 +43,7 @@ const ReadBlog = () => {
 
       setHeadings(extractedHeadings);
 
-      // Update the sanitized content with IDs
+      // Updating the sanitized content with IDs
       const updatedContent = doc.body.innerHTML;
       data.content = updatedContent;
     }
@@ -51,6 +52,21 @@ const ReadBlog = () => {
   const sanitizedData = (content) => ({
     __html: DOMPurify.sanitize(content),
   });
+
+  const scrollToHeading = (e, headingId) => {
+    e.preventDefault();
+    const element = document.getElementById(headingId);
+    if (element) {
+      const navbarHeight = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
 
   if (isLoading) {
     return <div className='flex justify-center items-center h-screen'>Loading...</div>;
@@ -67,29 +83,28 @@ const ReadBlog = () => {
   return (
     <div>
       {/* Responsive container margins */}
-      <div className='mt-16 sm:mt-20 md:mt-28 mx-4 sm:mx-12 lg:mx-44 border border-white '>
+      <div className='mt-16 sm:mt-20 md:mt-28 mx-4 sm:mx-12 md:mx-24 lg:mx-36 flex flex-row gap-10'>
         {/* Dynamic Sidebar - Responsive visibility and positioning */}
-        <aside className="fixed left-0 z-40 w-48 ml-2 sm:ml-8 md:ml-24 hidden lg:block" >
+        {headings.length > 0 && (
+
+        <aside className="bg-gradient-to-r from-[#23233a]/10 to-[#181825]/10
+               rounded noscroll max-h-96 sticky top-36 z-40 w-[17%]  hidden lg:block overflow-y-auto" >
           <div className="p-2 sm:p-3">
-            <ul className="space-y-2 text-xs sm:text-sm flex flex-col">
+            <ul className="space-y-5 text-xs sm:text-sm">
               {headings.map((heading) => (
-                <li key={heading.id} className='line-clamp-2'>
-                  <a
-                    href={`#${heading.id}`}
-                    className="flex items-center p-1 sm:p-2 hover:text-zinc-300 text-[#999999]"
-                  >
+                <li key={heading.id} className='transition-colors duration-200 line-clamp-2 p-1 hover:text-zinc-300 text-[#999999] cursor-pointer' onClick={(e) => scrollToHeading(e, heading.id)}>
                     {heading.text}
-                  </a>
                 </li>
               ))}
             </ul>
           </div>
         </aside>
+        )}
 
         {/* Blog Content - Responsive spacing and typography */}
-        <div className={headings.length?"px-2 lg:pl-4 pt-3 flex flex-col lg:ml-44":"px-2 lg:pl-4 pt-3 flex flex-col"}>
+        <div className={headings.length?"lg:w-[83%] w-[100%] px-2 lg:pl-4 pt -3 flex flex-col":"px-2 lg:pl-4 pt-3 flex flex-col"}>
           {/* Back button - Responsive text size */}
-          <a href="/" className='text-[#CCCCCC] text-sm sm:text-base hover:text-white'>← BACK TO HOME PAGE</a>
+          <a href="/" className='text-[#CCCCCC] text-xs sm:text-base hover:text-white'>← BACK TO HOME PAGE</a>
 
           {/* Date - Responsive spacing and text */}
           <span className='text-[#999999] mt-4 sm:mt-7 text-xs sm:text-sm'>

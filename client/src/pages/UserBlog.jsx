@@ -95,7 +95,7 @@ const UserBlog = () => {
   }
 
   return (
-    <div className='min-h-screen bg-gradient-to-b from-[#080808] to-gray-900'>
+    <div className='min-h-screen'>
       <div className='pt-16 mx-auto flex flex-col items-center justify-center w-11/12 sm:w-3/4'>
         <div className='text-3xl font-bold p-6 text-gray-200'>
           {userData?.blogName || "Untitled Blog"}
