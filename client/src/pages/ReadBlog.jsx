@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import DOMPurify from 'dompurify';
@@ -112,18 +112,20 @@ const ReadBlog = () => {
 
           {/* Author info - Responsive layout and sizing */}
           <div className='flex flex-row mt-6 sm:mt-9 gap-3 sm:gap-5 text-base sm:text-lg'>
+          <Link to={`/blogs?author=${data.user.clerkUserId}`}>
             <img
               src={data.user.profileimg}
-              className='w-8 h-8 sm:w-9 md:w-14 sm:h-9 md:h-12 rounded-md'
+              className='w-8 h-8 sm:w-9 md:w-12 sm:h-9 md:h-12 rounded-md hover:shadow-[0_0_15px_rgba(255,255,255,0.7)]'
               alt=""
             />
+            </Link>
             <div className='flex flex-col'>
-              <span className='text-[#CCCCCC] text-sm sm:text-base'>
+            <Link to={`/blogs?author=${data.user.clerkUserId}`}>
+              <span className='text-[#CCCCCC] text-sm sm:text-base hover:text-white'>
                 Posted By {data.user.username}
               </span>
-              <span className='text-[#B3B3B3] text-xs sm:text-base'>
-                19 minutes read
-              </span>
+              </Link>
+             
             </div>
           </div>
 
