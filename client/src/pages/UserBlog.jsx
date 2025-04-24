@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useUser, useAuth } from '@clerk/clerk-react';
 import Footer from '../components/Footer';
 import Spinner from "../components/Spinner";
-import ListUserBlogs from "../components/listUserBlogs";
+import ListUserBlogs from "../components/ListUserBlogs";
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import Coverdev from '../components/Coverdev';
