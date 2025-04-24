@@ -2,6 +2,8 @@ import React, { useMemo } from 'react';
 import { placeImage1, placeImage2, placeImage3, placeImage4, placeImage5, placeImage6 } from '../assets/index';
 import { Trash2, Share } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Tooltip } from 'react-tooltip'
+
 
 const BlogCard = ({ post, showDelete, modalContext, currPost }) => {
   const handleDelete = (e) => {
@@ -27,10 +29,11 @@ const BlogCard = ({ post, showDelete, modalContext, currPost }) => {
           {/* <Share onClick={handleDelete} className='opacity-50 h-6 hover:opacity-100 bg-black rounded-full p-1 z-50' /> */}
         </div>
       ) : (
-        <div className='opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute top-3 right-3 z-50 '>
+        <div className='opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute top-3 right-3 z-50 ' data-tooltip-id="my-tooltip" data-tooltip-content={"Go to "+post.user.blogName}>
           <Link to={`/blogs?author=${post.user.clerkUserId}`}>
-            <img src={post.user.profileimg} alt="" className='h-6 sm:h-9 w-6 sm:w-9 rounded-full object-cover object-center' />
+            <img src={post.user.profileimg} alt="" className='h-6 sm:h-9 w-6 sm:w-9 rounded-full object-cover object-center hover:shadow-[0_0_15px_rgba(255,255,255,0.7)]' />
           </Link>
+          <Tooltip id="my-tooltip"/>
         </div>
       )}
       {/* Overlay Content */}
