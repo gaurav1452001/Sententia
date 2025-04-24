@@ -97,11 +97,11 @@ const UserBlog = () => {
   return (
     <div className='min-h-screen bg-gradient-to-b from-[#080808] to-gray-900'>
       <div className='pt-16 mx-auto flex flex-col items-center justify-center w-11/12 sm:w-3/4'>
-        <div className='text-2xl font-bold p-6 text-gray-200'>
+        <div className='text-3xl font-bold p-6 text-gray-200'>
           {userData?.blogName || "Untitled Blog"}
         </div>
         <Coverdev />
-        <div className='px-3 w-full mt-14 italic text-gray-300 justify-between xl:justify-normal flex flex-row items-center gap-7'>
+        <div className='px-3 w-full mt-14  text-gray-300 justify-between xl:justify-normal flex flex-row items-center gap-7'>
           {userData?.username||""}
           <button 
             onClick={() => setShowEditModal(true)}
@@ -120,7 +120,7 @@ const UserBlog = () => {
         />
       )}
 
-      <div className="flex justify-center mt-5 text-2xl font-bold text-gray-200 mb-6">
+      <div className="flex justify-center mt-5 text-xl font-semibold text-gray-200 mb-6">
         Your Blog Posts
       </div>
       <div className='w-[60%] border-[1px] border-[#2d2f30] mx-auto'></div>

@@ -27,9 +27,9 @@ const BlogCard = ({ post, showDelete, modalContext, currPost }) => {
           {/* <Share onClick={handleDelete} className='opacity-50 h-6 hover:opacity-100 bg-black rounded-full p-1 z-50' /> */}
         </div>
       ) : (
-        <div className='opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute top-3 right-3 z-50'>
+        <div className='opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute top-3 right-3 z-50 '>
           <Link to={`/blogs?author=${post.user.clerkUserId}`}>
-            <img src={post.user.profileimg} alt="" className='h-9 w-9 rounded-full object-cover object-center' />
+            <img src={post.user.profileimg} alt="" className='h-6 sm:h-9 w-6 sm:w-9 rounded-full object-cover object-center' />
           </Link>
         </div>
       )}

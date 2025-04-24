@@ -32,38 +32,50 @@ const EditModal = ({ modalContext, userData, updateConfirm }) => {
           <div className="space-y-4 mb-6">
             <div className="flex flex-col gap-2">
               <label className="text-gray-400 text-sm">Username</label>
-              <input
-                type="text"
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
-                className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-violet-500"
-                placeholder="Enter Username"
-              />
+              <div className="relative">
+                <input
+                  type="text"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-violet-500"
+                  placeholder="Enter Username"
+                  maxLength={20}
+                />
+                <span className="absolute bottom-2 right-2 text-xs text-gray-400">
+                  {formData.username.length}/20
+                </span>
+              </div>
             </div>
             
             <div className="flex flex-col gap-2">
               <label className="text-gray-400 text-sm">Blog Name</label>
-              <input
-                type="text"
-                name="blogName"
-                value={formData.blogName}
-                onChange={handleChange}
-                className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-violet-500"
-                placeholder="Enter Blog Name"
-              />
+              <div className="relative">
+                <input
+                  type="text"
+                  name="blogName"
+                  value={formData.blogName}
+                  onChange={handleChange}
+                  className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-violet-500"
+                  placeholder="Enter Blog Name"
+                  maxLength={20}
+                />
+                <span className="absolute bottom-2 right-2 text-xs text-gray-400">
+                  {formData.blogName.length}/20
+                </span>
+              </div>
             </div>
           </div>
 
           <div className="flex justify-end space-x-4">
             <button
-              className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400"
+              className="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400"
               onClick={() => modalContext(false)}
             >
               Cancel
             </button>
             <button
-              className="px-4 py-2  bg-violet-900 text-white rounded hover:bg-violet-950"
+              className="px-4 py-2  bg-violet-900 text-white rounded-lg hover:bg-violet-950"
               onClick={handleSubmit}
             >
               Save Changes
