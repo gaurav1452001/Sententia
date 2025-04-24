@@ -5,7 +5,6 @@ import ReadBlog from './pages/ReadBlog'
 import WriteBlog from './pages/WriteBlog'
 import UserBlog from './pages/UserBlog'
 import ListBlogs from './components/ListBlogs'
-import AuthorBlog from './pages/AuthorBlog'
 import Navbar from './components/Navbar'
 const App = () => {
   return (
@@ -17,7 +16,6 @@ const App = () => {
         <Route path='/write-blog' element={<WriteBlog />} />
         <Route path='/user-blog' element={<UserBlog />} />
         <Route path='/blogs/:slug' element={<ReadBlog />} />
-        <Route path='/users/:user' element={<AuthorBlog />} />
         
       </Routes>
     </div>

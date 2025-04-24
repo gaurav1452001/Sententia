@@ -2,22 +2,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 html {
-    background-color:#141616;
-    background: linear-gradient(to bottom, #080808,#111827 );
-    color:white;
-    caret-color:white;
-    margin: 0;
-    padding: 0;
-    
+  background-color: #141616;
+  background: linear-gradient(to bottom, #080808, #111827);
+  color: white;
+  caret-color: white;
+  margin: 0;
+  padding: 0;
+
 }
+
 .noscroll::-webkit-scrollbar {
   display: none;
 }
+
 ::selection {
-    background-color: #333333;
-    color: white;
+  background-color: #333333;
+  color: white;
 }
+
 button:hover .ql-stroke,
 .ql-picker-label:hover .ql-stroke {
   fill: none;
@@ -39,6 +43,7 @@ button:hover .ql-fill,
   fill: white !important;
   stroke: none;
 }
+
 .ql-container {
-    height: calc(100% - 42px); 
-  }
+  height: calc(100% - 42px);
+}

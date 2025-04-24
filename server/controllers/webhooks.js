@@ -8,7 +8,6 @@ export const clerkWebhooks = async (req, res) => {
     if (!WEBHOOK_SECRET) {
         throw new Error("Webhook secret needed!");
     }
-
     const payload = req.body;
     const headers = req.headers;
 
@@ -46,7 +45,6 @@ export const clerkWebhooks = async (req, res) => {
 
             await Post.deleteMany({ user: deletedUser._id });
         }
-
         // Send a success response after processing the event
         res.status(200).json({
             message: "Webhook processed successfully",

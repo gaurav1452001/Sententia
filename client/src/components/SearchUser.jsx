@@ -4,7 +4,6 @@ import React from 'react'
 import { useSearchParams } from 'react-router-dom';
 import Spinner from './Spinner';
 import Footer from './Footer';
-import Navbar from './Navbar';
 import no_user from "../assets/nouser.png";
 import no_cover from "../assets/cover_placeholder.jpg";
 
@@ -28,7 +27,6 @@ const SearchUser = () => {
     if (isLoading) {
         return (
             <div>
-                <Navbar />
                 <div className='flex justify-center items-center h-screen'>
                     <Spinner />
                 </div>
