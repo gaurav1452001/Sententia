@@ -18,7 +18,6 @@ const App = () => {
         <Route path='/write-blog' element={<WriteBlog />} />
         <Route path='/user-blog' element={<UserBlog />} />
         <Route path='/blogs/:slug' element={<ReadBlog />} />
-        <Analytics/>
         <Analytics />
         <SpeedInsights/>
       </Routes>
