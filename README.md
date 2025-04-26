@@ -17,15 +17,15 @@
 
 ##  Table of Contents
 
-- [ Overview](#-overview)
-- [ Features](#-features)
-- [ Project Structure](#-project-structure)
-- [ Getting Started](#-getting-started)
-  - [ Prerequisites](#-prerequisites)
-  - [ Installation](#-installation)
-- [ Contributing](#-contributing)
-- [ License](#-license)
-- [ Acknowledgments](#-acknowledgments)
+- [ Overview](##-overview)
+- [ Features](##-features)
+- [ Project Structure](##-project-structure)
+- [ Getting Started](##-getting-started)
+  - [ Prerequisites](###-prerequisites)
+  - [ Installation](###-installation)
+- [ Contributing](##-contributing)
+- [ License](##-license)
+- [ Acknowledgments](##-acknowledgments)
 
 ---
 
@@ -101,7 +101,7 @@
 
 ---
 
-###  Project Structure
+##  Project Structure
 <details open>
 	<summary><b><code>SENTENTIA/</code></b></summary>
 	<details> <!-- __root__ Submodule -->
