@@ -25,7 +25,8 @@
 ---
 
 ##  Overview
-Sententia is a MERN stack blogging platform that combines a Pinterest-inspired masonry layout with a traditional blogging experience. It allows users to manage their profiles (change username, blog name, avatar, and cover image), create and delete posts, and enjoy an infinite-scroll feed. The client uses React (with Vite, TailwindCSS, React Query, and Clerk authentication), while the server is built with Node.js, Express, MongoDB, featuring secure authentication via Clerk Webhook and media uploads via ImageKit,.
+Sententia is a MERN stack blogging platform that combines a Pinterest-inspired masonry layout with a traditional blogging experience. It allows users to manage their profiles (change username, blog name, avatar, and cover image), create and delete posts, and enjoy an infinite-scroll feed. The client uses React (with Vite, TailwindCSS, React Query, and Clerk authentication), while the server is built with Node.js, Express, MongoDB, featuring secure authentication via Clerk Webhook and media uploads via ImageKit.
+- Deployed Link on Vercel-<a href="https://sententia-eight.vercel.app/"> Sententia Link</a>
 #### HOME PAGE
 <img src="https://github.com/user-attachments/assets/745e0f21-a5f8-4dbe-a31c-403720a7d746" width="600" alt="desktop1">
 
