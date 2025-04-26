@@ -1,6 +1,6 @@
 <p align="center"><h1 align="center">SENTENTIA</h1></p>
 <p align="center">
-	Sententia is a modern blogging platform inspired by Pinterest's masonry layout while maintaining a traditional approach to blogging. Built with the MERN stack (MongoDB, Express, React, Node.js), Sententia provides a seamless experience for users to create, manage, and share their thoughts through blogs.
+	Sententia is a modern blogging platform built with MERN stack (MongoDB, Express, React, Node.js), providing a seamless experience for users to create, manage, and share their thoughts through blogs.
 </p>
 <p align="center">
 	<img src="https://img.shields.io/github/license/gaurav1452001/Sententia?style=default&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
@@ -8,29 +8,24 @@
 	<img src="https://img.shields.io/github/languages/top/gaurav1452001/Sententia?style=default&color=0080ff" alt="repo-top-language">
 	<img src="https://img.shields.io/github/languages/count/gaurav1452001/Sententia?style=default&color=0080ff" alt="repo-language-count">
 </p>
-<p align="center"><!-- default option, no dependency badges. -->
-</p>
-<p align="center">
-	<!-- default option, no dependency badges. -->
-</p>
 <br>
 
 ##  Table of Contents
 
-- [ Overview](##-overview)
-- [ Features](##-features)
-- [ Project Structure](##-project-structure)
-- [ Getting Started](##-getting-started)
-  - [ Prerequisites](###-prerequisites)
-  - [ Installation](###-installation)
-- [ Contributing](##-contributing)
-- [ License](##-license)
-- [ Acknowledgments](##-acknowledgments)
+- [ Overview](#overview)
+- [ Features](#features)
+- [ Project Structure](#project-structure)
+- [ Getting Started](#getting-started)
+  - [ Prerequisites](#prerequisites)
+  - [ Installation](#installation)
+- [ Contributing](#contributing)
+- [ License](#license)
+- [ Acknowledgments](#acknowledgments)
 
 ---
 
 ##  Overview
-
+Sententia is a MERN stack blogging platform that combines a Pinterest-inspired masonry layout with a traditional blogging experience. It allows users to manage their profiles (change username, blog name, avatar, and cover image), create and delete posts, and enjoy an infinite-scroll feed. The client uses React (with Vite, TailwindCSS, React Query, and Clerk authentication), while the server is built with Node.js, Express, MongoDB, featuring secure authentication via Clerk Webhook and media uploads via ImageKit,.
 #### HOME PAGE
 <img src="https://github.com/user-attachments/assets/745e0f21-a5f8-4dbe-a31c-403720a7d746" width="600" alt="desktop1">
 
