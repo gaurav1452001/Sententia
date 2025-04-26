@@ -2,7 +2,6 @@ import express from 'express';
 import userRouter from './routes/user.route.js';
 import postRouter from './routes/post.route.js';
 import 'dotenv/config';
-import './config/instrument.js';
 import connectDB from './config/db.js';
 import webhookRouter from './routes/webhook.route.js';
 import { clerkMiddleware} from '@clerk/express';
